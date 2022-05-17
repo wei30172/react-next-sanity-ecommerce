@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useStateContext } from '../../context/StateContext';
 
 import { client, urlFor } from '../../lib/client';
 import { Product, RatingStars } from '../../components';
-import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price, rating, numReviews, countInStock } = product;
@@ -18,7 +18,7 @@ const ProductDetails = ({ product, products }) => {
   
   return (
     <>
-      <div className="product-detail-container">
+      <div className='product-detail-container'>
         <div>
           <div className="image-container">
             <img src={image && urlFor(image[index])} className="product-detail-image" />
@@ -38,7 +38,7 @@ const ProductDetails = ({ product, products }) => {
         <div className="product-detail-desc">
           <h1>{name}</h1>
           <div className="reviews">
-            <div>
+            <div className="rating">
               {rating}
               <RatingStars rating={rating}/>
             </div>
@@ -46,7 +46,7 @@ const ProductDetails = ({ product, products }) => {
           </div>
           <h4>Details: </h4>
           <p>{details}</p>
-          <p className={ inStock ? 'price' : 'price no'}>${price}</p>
+          <p className={ inStock ? 'price stock' : 'price'}>${price}</p>
           <span className="status">({inStock ? 'In stock' : 'Unavailable now'})</span>
           {inStock && <>
             <div className="quantity">
@@ -65,12 +65,12 @@ const ProductDetails = ({ product, products }) => {
         </div>
       </div>
 
-      <div className="maylike-products-wrapper">
+      <div className='maylike-products-wrapper'>
         <h2>You may also like</h2>
         <div className="marquee">
           <div className="maylike-products-container track">
             {products.map((item) => (
-              <Product key={item._id} product={item} />
+              <Product key={item._id} product={item} page={'product'}/>
             ))}
           </div>
         </div>
