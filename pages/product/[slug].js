@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 import { client, urlFor } from '../../lib/client';
-import { Product } from '../../components';
+import { Product, RatingStars } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
-  const { image, name, details, price } = product;
+  const { image, name, details, price, rating, numReviews, countInStock } = product;
+  const [inStock, setInStock] = useState(countInStock > 0 ? true : false);
   const [index, setIndex] = useState(0);
   const { incQty, decQty, qty, onAdd, setShowCart } = useStateContext();
 
@@ -38,29 +39,29 @@ const ProductDetails = ({ product, products }) => {
           <h1>{name}</h1>
           <div className="reviews">
             <div>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
+              {rating}
+              <RatingStars rating={rating}/>
             </div>
-            <p>(126)</p>
+            <p>({numReviews})</p>
           </div>
           <h4>Details: </h4>
           <p>{details}</p>
-          <p className="price">${price}</p>
-          <div className="quantity">
-            <h3>Quantity:</h3>
-            <p className="quantity-desc">
-              <span className="minus" onClick={decQty}><AiOutlineMinus /></span>
-              <span className="num">{qty}</span>
-              <span className="plus" onClick={incQty}><AiOutlinePlus /></span>
-            </p>
-          </div>
-          <div className="buttons">
-            <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
-            <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
-          </div>
+          <p className={ inStock ? 'price' : 'price no'}>${price}</p>
+          <span className="status">({inStock ? 'In stock' : 'Unavailable now'})</span>
+          {inStock && <>
+            <div className="quantity">
+              <h3>Quantity:</h3>
+              <p className="quantity-desc">
+                <span className="minus" onClick={decQty}><AiOutlineMinus /></span>
+                <span className="num">{qty}</span>
+                <span className="plus" onClick={incQty}><AiOutlinePlus /></span>
+              </p>
+            </div>
+            <div className="buttons">
+              <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
+              <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
+            </div>
+          </>}
         </div>
       </div>
 
