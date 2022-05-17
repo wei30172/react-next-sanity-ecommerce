@@ -13,12 +13,12 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <Link href="/"><div className="logo">
-        <AiFillHome color={'gray'} size={30}/>
+        <AiFillHome color={'white'} size={30}/>
       </div></Link>
       <div className="user">
         <div className="cart-icon-container">
           <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
-          <AiOutlineShopping />
+          <AiOutlineShopping color={'white'}/>
           <span className="cart-item-qty">{totalQuantities}</span>
           </button>
         </div>

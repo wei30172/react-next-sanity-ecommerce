@@ -1,6 +1,5 @@
 // component: Layout
 .layout{
-  padding: 10px;
   .main-container{
     width: 100%;
     max-width: 1400px;
@@ -15,7 +14,6 @@
   line-height: 0.9; 
   padding: 100px 40px;
   background-color: #dcdcdc;
-  border-radius: 15px;
   position: relative;
   .beats-solo{
     font-size: 1.2rem;
@@ -104,8 +102,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 15px;
   margin: 0 auto;
   position: relative;
+  background-color: $text-color;
   .user{
     margin: .5rem;
     .auth-container{
@@ -175,104 +175,15 @@
   align-items: center;
   gap: 10px;
   margin-top: 20px;
-  padding: 30px 10px;
-  color: $text-color;
+  padding: 10px;
+  background-color: $text-color;
+  color: white;
   text-align: center;
   font-weight: 700;
   .icons{
     font-size: 30px;
     display: flex;
     gap: 10px;
-  }
-}
-
-// component: FooterBanner
-.footer-banner-container{
-  padding: 100px 40px;
-  background-color: $main-color;
-  border-radius: 15px;
-  position: relative;
-  height: 400px;
-  line-height: 1; 
-  color: white;
-  width: 100%;
-  margin-top: 120px;
-  .banner-desc{
-    display: flex ;
-    justify-content: space-between;
-    button{
-      border-radius: 15px;
-      padding: 10px 16px;
-      background-color: white;
-      color: red;
-      border: none;
-      margin-top: 40px;
-      font-size: 18px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .left{
-      h3{
-        font-weight: 900;
-        font-size: 80px;
-        margin-left: 25px;
-      }
-      p{
-        margin:18px;
-      }
-    }
-    .right{
-      line-height: 1.4;
-      h3{
-        font-weight: 800;
-        font-size: 60px;
-      }
-      p{
-        font-size: 18px;
-      }
-      .company-desc{
-        font-size: 14px;
-        font-weight: 300;
-      }
-    }
-    .footer-banner-image{
-      position: absolute;
-      top: -25%;
-      left: 25%;
-      object-fit: cover;
-    }
-  }
-}
-@media screen and (max-width:800px) {
-  .footer-banner-container{
-    height: 420px;
-    margin-top: 80px;
-    .banner-desc{
-      width: 60%;
-      justify-content: center;
-      gap: 20px;
-      .left {
-        display: none;
-      }
-      .right {
-        h3{
-          font-size: 45px;
-        }
-        p{
-          font-size: 18px;
-        }
-        .company-desc{
-          font-size: 14px;
-        }
-      }
-      .footer-banner-image{
-        width: 60%;
-        height: 60%;
-        top: -15%;
-        left: 40%;
-        object-fit: contain;
-      }
-    }
   }
 }
 
