@@ -21,7 +21,7 @@ const Navbar = () => {
           <BsMoonFill color={darkMode ? 'yellow' : 'white'} size={20} onClick={() => setDarkMode(true)}/>
           <BsSunFill color={darkMode ? 'white' : 'yellow'} size={20} onClick={() => setDarkMode(false)}/>
         </div>
-        {true && (
+        {authReady && (
           <ul>
             {!user && <li onClick={login} className="btn">Login/Signup</li>}
             {user && <Link href="/dashboard"><li>{user.email}</li></Link>}
