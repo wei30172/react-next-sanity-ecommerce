@@ -26,6 +26,10 @@ a {
   text-decoration: none;
 }
 
+li {
+  list-style-type: none;
+}
+
 .btn{
   width: 100%;
   max-width: 400px;
@@ -37,6 +41,7 @@ a {
   text-transform: uppercase;
   background-color: $main-color;
   color: #fff;
+  text-align: center;
   cursor: pointer;
   transform: scale(1, 1);
   transition: transform 0.5s ease;

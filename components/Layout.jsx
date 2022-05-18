@@ -1,9 +1,8 @@
-import { useStateContext } from '../context/StateContext';
-
 import React from 'react';
 import Head from 'next/head';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import { useStateContext } from '../context/StateContext';
+
+import { AuthWrapper, Navbar, Footer } from '../components';
 
 const Layout = ({ children }) => {
   const { darkMode } = useStateContext();
@@ -16,9 +15,11 @@ const Layout = ({ children }) => {
       <header>
         <Navbar />
       </header>
-      <main className='main-container'>
-        {children}
-      </main>
+      <AuthWrapper>
+        <main className='main-container'>
+          {children}
+        </main>
+      </AuthWrapper>
       <Footer />
     </div>
   )

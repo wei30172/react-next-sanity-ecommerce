@@ -2,6 +2,7 @@
 .layout{
   .main-container{
     width: 100%;
+    min-height: 600px;
     max-width: 1400px;
     margin: 0 auto;
   }
@@ -201,14 +202,26 @@
   margin: 0 auto;
   position: relative;
   background-color: $text-color;
-  .switch {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
+  color: white;
+
   .user{
     margin: .5rem;
+    .switch {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      svg{
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     .cart-icon-container{
       display: flex;
       justify-content: flex-end;

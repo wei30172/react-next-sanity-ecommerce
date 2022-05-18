@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-// import { useSession } from 'next-auth/react';
+import { useAuthContext } from '../context/AuthContext'
 
 const ProtectedRoute = ({ children }) => {
   const router = useRouter();
-  // const { status } = useSession();
+  const { user } = useAuthContext();
 
-  // useEffect(() => {
-  //   if (status === 'unauthenticated') {
-  //     router.push('/')
-  //   }
-  // }, [router, status])
+  useEffect(() => {
+    if (!user) {
+      router.push('/')
+    }
+  }, [router, user])
 
-  // if (status === 'unauthenticated') return null
+  if (!user) return null
 
   return <>{children}</>
 }
