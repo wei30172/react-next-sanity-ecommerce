@@ -1,11 +1,13 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
+import axios from 'axios';
+import { setLocalStorage, getLocalStorage } from '../utils/storage'
 import { toast } from 'react-hot-toast';
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [showCart, setShowCart] = useState(false);
-  const [cartItems, setCartItems] = useState(() => getLocalStorage("cartItems", []));
+  const [cartItems, setCartItems] = useState(getLocalStorage("cartItems", []));
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [qty, setQty] = useState(1);
@@ -39,25 +41,6 @@ export const StateContext = ({ children }) => {
     return initialValue;
   }
 
-  function setLocalStorage(key, value) {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  function getLocalStorage(key, initialValue) {
-    try {
-      if (typeof window !== "undefined") {
-        return localStorage.getItem(key) ?  JSON.parse(localStorage.getItem(key)) : initialValue;
-      }
-    } catch (err) {
-      console.log(err);
-      return initialValue;
-    }
-  }
-
   const incQty = () => {
     setQty((pervQty) => pervQty + 1)
   }
@@ -69,7 +52,14 @@ export const StateContext = ({ children }) => {
     })
   }
 
-  const onAdd = (product, quantity) => {
+  const addToCart = async (product, quantity) => {
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    
+    if (data.countInStock < quantity) {
+      toast.error(`Sorry. ${product.name} is out of stock`);
+      return;
+    }
+
     const checkProductInCart = cartItems.find((item) => item._id === product._id);
     
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
@@ -92,7 +82,7 @@ export const StateContext = ({ children }) => {
     setQty(1);
   }
 
-  const onRemove = (product) => {
+  const removeFromCart = (product) => {
     foundProduct = cartItems.find((item) => item._id === product._id);
     const newCartItems = cartItems.filter((item) => item._id !== product._id);
     
@@ -102,16 +92,21 @@ export const StateContext = ({ children }) => {
     
   }
 
-  const toggleCartItemQuanitity = (id, value) => {
+  const updateCartItemQuanitity = async (id, value) => {
     foundProduct = cartItems.find((item) => item._id === id);
     index = cartItems.findIndex((product) => product._id === id);
 
     const newCartItems = cartItems.filter((item) => item._id !== id);
     
     if(value === 'inc') {
+      const { data } = await axios.get(`/api/products/${id}`);
+      if (data.countInStock < 1) {
+        toast.error(`Sorry. ${product.name} is out of stock`);
+        return;
+      }
       setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 } ]);
       setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
-      setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1)
+      setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
     } else if(value === 'dec') {
       if (foundProduct.quantity > 1) {
         setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 } ]);
@@ -132,9 +127,9 @@ export const StateContext = ({ children }) => {
         qty,
         incQty,
         decQty,
-        onAdd,
-        onRemove,
-        toggleCartItemQuanitity,
+        addToCart,
+        removeFromCart,
+        updateCartItemQuanitity,
         setCartItems,
         setTotalPrice,
         setTotalQuantities,

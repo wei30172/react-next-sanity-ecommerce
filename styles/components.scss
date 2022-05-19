@@ -109,7 +109,7 @@
   height: 500px;
   line-height: 0.9; 
   padding: 100px 40px;
-  background-color: #dcdcdc;
+  background-color: $gray-color;
   color: $text-color;
   position: relative;
   .beats-solo{
@@ -179,8 +179,8 @@
     .hero-banner-image{
       width: 70%;
       height: 70%;
-      top: -2%;
-      right: -6%;
+      top: 0;
+      right: 0;
       object-fit: contain;
     }
     button{
@@ -203,8 +203,13 @@
   position: relative;
   background-color: $text-color;
   color: white;
-
+  .logo{
+    cursor: pointer;
+  }
   .user{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
     margin: .5rem;
     .switch {
       display: flex;
@@ -217,10 +222,13 @@
         }
       }
     }
-    ul {
+    .button-container {
       display: flex;
       align-items: center;
       gap: 10px;
+      .btn{
+        margin-top: 0;
+      }
     }
     .cart-icon-container{
       display: flex;

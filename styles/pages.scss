@@ -133,6 +133,86 @@
   }
 }
 
+// Page: Login, Register
+.login-wrapper, .register-wrapper{
+  color: $text-color;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  input{
+    appearance: none;
+    border: none;
+    outline: none;
+  }
+  h2{
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  .btn{
+    background-image: linear-gradient(to right, $main-color 50%, $main-color 50%, $red-color);
+    background-size: 200%;
+    background-position: 0%;
+    transition: .5 ease-in-out;
+    margin-bottom: 5px;
+    &:hover{
+      background-position: 100%;
+      transform: scale(1,1);
+    }
+  }
+  form{
+    position: relative;
+    // &:after{
+    //   content: "";
+    //   position: absolute;
+    //   top: -5px;
+    //   left: -5px;
+    //   bottom: -5px;
+    //   right: -5px;
+    //   z-index: 1;
+    //   background-image: linear-gradient(to bottom right, $main-color, $red-color);
+    // }
+    .form-inner{
+      position: relative;
+      background-color: $gray-color;
+      padding: 15px;
+      z-index: 2;
+      .form-group{
+        width: 300px;
+        margin: 0 auto;
+        margin-bottom: 15px;
+        .error{
+          color: $red-color;
+          font-size: 12px;
+        }
+        label{
+          margin-bottom: 5px;
+          transition: .5 ease-in-out;
+        }
+        &:focus-within label {
+          color: $main-color;
+          font-weight: 500;
+        }
+        input{
+          width: 100%;
+          padding: 10px 15px;
+          background-color: #fafafa;
+          border: 8px;
+          transition: .5 ease-in-out;
+        }
+        &:focus-within input {
+          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+  .link{
+    color: $main-color;
+    cursor: pointer;
+  }
+}
+
 // Page: Success
 .success-wrapper{
   color: $text-color;
@@ -141,7 +221,7 @@
     width: 1000px;
     margin: auto;
     margin-top: 160px;
-    background-color: #dcdcdc;
+    background-color: $gray-color;
     padding: 50px;
     border-radius: 15px;
     display: flex;

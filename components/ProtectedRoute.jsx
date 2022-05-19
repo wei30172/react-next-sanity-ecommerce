@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useAuthContext } from '../context/AuthContext'
+import { useUserContext } from '../context/UserContext';
+// import { useAuthContext } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
   const router = useRouter();
-  const { user } = useAuthContext();
+  const { userInfo }  = useUserContext();
+  // const { netlifyUser }  = useAuthContext();
 
   useEffect(() => {
-    if (!user) {
+    if (!userInfo) {
       router.push('/')
     }
-  }, [router, user])
+  }, [router, userInfo])
 
-  if (!user) return null
+  if (!userInfo) return null
 
   return <>{children}</>
 }

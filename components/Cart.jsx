@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
+  const { totalPrice, totalQuantities, cartItems, setShowCart, updateCartItemQuanitity, removeFromCart } = useStateContext();
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -71,11 +71,11 @@ const Cart = () => {
               <div className="flex bottom">
                 <div>
                   <p className="quantity-desc">
-                    <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec')}>
+                    <span className="minus" onClick={() => updateCartItemQuanitity(item._id, 'dec')}>
                       <AiOutlineMinus />
                     </span>
                     <span className="num">{item.quantity}</span>
-                    <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc')}>
+                    <span className="plus" onClick={() => updateCartItemQuanitity(item._id, 'inc')}>
                       <AiOutlinePlus />
                     </span>
                   </p>
@@ -83,7 +83,7 @@ const Cart = () => {
                 <button
                   type="button"
                   className="remove-item"
-                  onClick={() => onRemove(item)}
+                  onClick={() => removeFromCart(item)}
                 >
                   <TiDeleteOutline />
                 </button>

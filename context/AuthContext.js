@@ -1,31 +1,27 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
+import { setLocalStorage } from '../utils/storage'
 import netlifyIdentity from 'netlify-identity-widget'
 
-const Context = createContext({
-  user: null,
-  login: () => {},
-  logout: () => {},
-  authReady: false,
-});
+const Context = createContext();
 
 export const AuthContext = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [netlifyUser, setNetlifyUser] = useState(null);
   const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
     netlifyIdentity.on('login', (user) => {
-      setUser(user);
+      setNetlifyUser(user);
       netlifyIdentity.close();
       // console.log('log in');
     })
 
     netlifyIdentity.on('logout', () => {
-      setUser(null);
+      setNetlifyUser(null);
       // console.log('log out');
     })
 
     netlifyIdentity.on('init', (user) => {
-      setUser(user);
+      setNetlifyUser(user);
       setAuthReady(true);
       // console.log('init');
     })
@@ -40,25 +36,28 @@ export const AuthContext = ({ children }) => {
     }
   }, [])
 
-  const login = () => {
-    netlifyIdentity.open()
+  const netlifyLogin = () => {
+    netlifyIdentity.open();
   }
 
-  const logout = () => {
-    netlifyIdentity.logout()
+  const netlifyLogout = () => {
+    netlifyIdentity.logout();
   }
 
-  if (user) {
-    window.localStorage.setItem('email', user.email)
+  if (netlifyUser) {
+    setLocalStorage("user", {
+      'name': netlifyUser.user_metadata.full_name,
+      'email': netlifyUser.email
+    });
   }
-  
+
   return (
     <Context.Provider
       value={{
-        user,
-        login,
-        logout,
-        authReady
+        netlifyUser,
+        authReady,
+        netlifyLogin,
+        netlifyLogout,
       }}
     >
       { children }
