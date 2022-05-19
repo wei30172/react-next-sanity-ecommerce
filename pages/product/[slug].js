@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { useStateContext } from '../../context/StateContext';
 
-import { client, urlFor } from '../../lib/client';
+import { client, urlFor } from '../../utils/client';
 import { Product, RatingStars } from '../../components';
 
 const ProductDetails = ({ product, products }) => {
@@ -18,7 +18,7 @@ const ProductDetails = ({ product, products }) => {
   
   return (
     <>
-      <div className='product-detail-container'>
+      <div className="product-detail-container">
         <div>
           <div className="image-container">
             <img src={image && urlFor(image[index])} className="product-detail-image" />
@@ -65,7 +65,7 @@ const ProductDetails = ({ product, products }) => {
         </div>
       </div>
 
-      <div className='maylike-products-wrapper'>
+      <div className="maylike-products-wrapper">
         <h2>You may also like</h2>
         <div className="marquee">
           <div className="maylike-products-container track">

@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         <Navbar />
       </header>
       <AuthWrapper>
-        <main className='main-container'>
+        <main className="main-container">
           {children}
         </main>
       </AuthWrapper>

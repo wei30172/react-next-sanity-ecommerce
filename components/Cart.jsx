@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import Link from 'next/link';
 import { useStateContext } from '../context/StateContext';
-import { urlFor } from '../lib/client';
-import getStripe from '../lib/getStripe';
+import { urlFor } from '../utils/client';
+import getStripe from '../utils/getStripe';
 
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -35,7 +35,7 @@ const Cart = () => {
       <div className="cart-container">
         <button
           type='button'
-          className='cart-heading'
+          className="cart-heading"
           onClick={() => setShowCart(false)}
         >
           <AiOutlineLeft />

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 
 import { useStateContext } from '../context/StateContext';
-import { runFireworks } from '../lib/utils';
+import { runFireworks } from '../utils/runFireworks';
 
 const Success = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();

@@ -1,18 +1,18 @@
 import React from 'react'
 import { HeroBanner, Product } from '../components';
 
-import { client } from '../lib/client';
+import { client } from '../utils/client';
 
 const Home = ({ products, bannerData }) => {
   return (
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]}/>
-      <div className='products-heading'>
+      <div className="products-heading">
         <h2>Our Products</h2>
         <p>Get the Best Deal</p>
       </div>
 
-      <div className='products-container'>
+      <div className="products-container">
         {products?.map((product) => <Product key={product._id} product={product} />)}
       </div>
     </>
