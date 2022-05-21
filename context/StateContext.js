@@ -1,23 +1,21 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import axios from 'axios';
-import { setLocalStorage, getLocalStorage } from '../utils/storage'
+import { setCookie, getCookie } from '../utils/jsCookie'
 import { toast } from 'react-hot-toast';
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [showCart, setShowCart] = useState(false);
-  const [cartItems, setCartItems] = useState(getLocalStorage("cartItems", []));
+  const [cartItems, setCartItems] = useState(getCookie("cartItems", []));
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [qty, setQty] = useState(1);
   const [darkMode, setDarkMode] = useState(false);
 
   let foundProduct;
-  let index;
 
   useEffect(() => {
-    setLocalStorage("cartItems", cartItems);
+    setCookie("cartItems", cartItems);
   }, [cartItems]);
 
   useEffect(() => {
@@ -53,10 +51,8 @@ export const StateContext = ({ children }) => {
   }
 
   const addToCart = async (product, quantity) => {
-    const { data } = await axios.get(`/api/products/${product._id}`);
-    
-    if (data.countInStock < quantity) {
-      toast.error(`Sorry. ${product.name} is out of stock`);
+    if (product.countInStock < quantity) {
+      toast.error(`Sorry. ${product.name} is out of stock.`);
       return;
     }
 
@@ -93,15 +89,12 @@ export const StateContext = ({ children }) => {
   }
 
   const updateCartItemQuanitity = async (id, value) => {
-    foundProduct = cartItems.find((item) => item._id === id);
-    index = cartItems.findIndex((product) => product._id === id);
-
+    const foundProduct = cartItems.find((item) => item._id === id);
     const newCartItems = cartItems.filter((item) => item._id !== id);
     
     if(value === 'inc') {
-      const { data } = await axios.get(`/api/products/${id}`);
-      if (data.countInStock < 1) {
-        toast.error(`Sorry. ${product.name} is out of stock`);
+      if (foundProduct.countInStock < foundProduct.quantity + 1) {
+        toast.error(`Sorry. ${foundProduct.quantity} ${foundProduct.name} left.`);
         return;
       }
       setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 } ]);

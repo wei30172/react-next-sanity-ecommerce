@@ -1,7 +1,8 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { setLocalStorage, getLocalStorage } from '../utils/storage'
+import jsCookie from 'js-cookie';
+import { setCookie, getCookie } from '../utils/jsCookie'
 import { getError }from '../utils/getError';
 import { toast } from 'react-hot-toast';
 
@@ -10,10 +11,17 @@ const Context = createContext();
 export const UserContext = ({ children }) => {
   const router = useRouter();
   
-  const [userInfo, setUserInfo] = useState(getLocalStorage("userInfo", null));
+  const [userInfo, setUserInfo] = useState(getCookie("userInfo", null));
+  const [shippingAddress, setShippingAddress] = useState(getCookie("shippingAddress", {
+    fullName: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    address: ""
+  }));
 
   useEffect(() => {
-    setLocalStorage("userInfo", userInfo);
+    setCookie("userInfo", userInfo);
   }, [userInfo]);
 
   const userLogin = async ({email, password} = info, redirect) => {
@@ -25,7 +33,6 @@ export const UserContext = ({ children }) => {
       setUserInfo(data)
       router.push(redirect || '/');
     } catch (err) {
-      console.log(err);
       toast.error(getError(err));
     }
   }
@@ -44,15 +51,26 @@ export const UserContext = ({ children }) => {
       setUserInfo(data)
       router.push(redirect || '/');
     } catch (err) {
-      console.log(err);
       toast.error(getError(err));
     }
   }
 
   const userLogout = () => {
-    console.log("Logout");
-    localStorage.removeItem("userInfo");
+    toast.success(`You've been logged out.`);
+    jsCookie.remove("userInfo");
+    jsCookie.remove("shippingAddress");
     setUserInfo(null);
+    setShippingAddress(null);
+  }
+
+  const saveShippingAddress = async (info) => {
+    try {
+      setShippingAddress(info);
+      setCookie("shippingAddress", shippingAddress);
+      router.push('/payment');
+    } catch (err) {
+      toast.error(getError(err));
+    }
   }
 
   return (
@@ -61,7 +79,10 @@ export const UserContext = ({ children }) => {
         userInfo,
         userLogin,
         userRegister,
-        userLogout
+        userLogout,
+        shippingAddress,
+        setShippingAddress,
+        saveShippingAddress
       }}
     >
       { children }

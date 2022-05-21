@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { RiStarFill, RiStarLine, RiStarHalfFill } from 'react-icons/ri';
 
 const RatingStars = ({ rating }) => {

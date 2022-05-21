@@ -12,7 +12,7 @@ const Navbar = () => {
   const { showCart, setShowCart, totalQuantities, darkMode, setDarkMode } = useStateContext();
   const { userInfo, userLogout }  = useUserContext();
   // const { netlifyUser, authReady, netlifyLogin, netlifyLogout }  = useAuthContext();
-
+  
   return (
     <div className="navbar-container">
       <Link href="/"><div className="logo">
@@ -24,7 +24,7 @@ const Navbar = () => {
             <Link href={`/login`}><button type="button" className="btn">Login</button></Link>
           }
           {userInfo &&
-            <Link href="/dashboard">{userInfo.email}</Link>
+            <Link href="/dashboard">{userInfo.name}</Link>
           }
           {userInfo &&
             <button type="button" className="btn" onClick={userLogout}>Log out</button>

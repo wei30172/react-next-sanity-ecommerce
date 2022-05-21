@@ -20,9 +20,8 @@ const Login = () => {
   
   const [userInput, setUserInput] = useState({email: "", password: ""})
 
-  const onSubmit = (e) => {
+  const onSubmit = () => {
     userLogin(userInput, redirect);
-    return false;
   }
 
   const handleChange = (e) => {
@@ -67,7 +66,7 @@ const Login = () => {
           <input className="btn" type="submit" value="LOGIN" />
 
           Do not have an account?
-          <Link href={`/register`}><span className="link"> Register</span></Link>
+          <Link href={`/register?redirect=${redirect || '/'}`}><span className="link"> Register</span></Link>
         </div>
       </form>
     </div>

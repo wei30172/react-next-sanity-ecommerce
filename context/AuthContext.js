@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { setLocalStorage } from '../utils/storage'
+import { setCookie } from '../utils/jsCookie'
 import netlifyIdentity from 'netlify-identity-widget'
 
 const Context = createContext();
@@ -45,7 +45,7 @@ export const AuthContext = ({ children }) => {
   }
 
   if (netlifyUser) {
-    setLocalStorage("user", {
+    setCookie("user", {
       'name': netlifyUser.user_metadata.full_name,
       'email': netlifyUser.email
     });

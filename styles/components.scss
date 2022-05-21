@@ -2,9 +2,16 @@
 .layout{
   .main-container{
     width: 100%;
-    min-height: 600px;
+    min-height: 700px;
     max-width: 1400px;
     margin: 0 auto;
+  }
+}
+@media screen and (max-width:800px) {
+  .layout{
+    .main-container{
+      min-height: 520px;
+    }
   }
 }
 
@@ -271,8 +278,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
+  gap: 5px;
+  padding: 5px;
   background-color: $text-color;
   color: white;
   text-align: center;
@@ -330,7 +337,7 @@
     .product-container{
       margin-top: 15px;
       overflow: auto;
-      max-height: 70vh;
+      max-height: 80vh;
       padding: 20px 10px;
       .product{
         display: flex;
@@ -439,6 +446,32 @@
           width: 300px;
           margin: auto;
         }
+      }
+    }
+  }
+}
+
+// component: CheckoutWizard
+.checkoutWizard-container{
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  .step{
+    text-align: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    .index {
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      border-radius: 50%;
+      color: #000;
+      background-color: $gray-color;
+      &.active {
+        background-color: $main-color;
       }
     }
   }

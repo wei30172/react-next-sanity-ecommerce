@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { BsBagCheckFill } from 'react-icons/bs';
-
+import jsCookie from 'js-cookie';
 import { useStateContext } from '../context/StateContext';
+
+import { BsBagCheckFill } from 'react-icons/bs';
 import { runFireworks } from '../utils/runFireworks';
 
 const Success = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
 
   useEffect(() => {
-    localStorage.removeItem("cartItems");
+    jsCookie.remove("cartItems");
     setCartItems([]);
     setTotalPrice(0);
     setTotalQuantities(0);
