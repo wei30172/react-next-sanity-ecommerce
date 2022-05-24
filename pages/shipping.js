@@ -8,7 +8,7 @@ import { CheckoutWizard } from '../components';
 const Shipping = () => {
   const router = useRouter();
   
-  const { userInfo, shippingAddress, setShippingAddress, saveShippingAddress }  = useUserContext();
+  const { userInfo, shippingAddress, saveShippingAddress }  = useUserContext();
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   
@@ -44,7 +44,7 @@ const Shipping = () => {
                   : ''
               }</span>
               <input
-                type="text" name='fullName' id='fullName' value={shippingInfo.fullName}
+                type="text" name='fullName' value={shippingInfo.fullName}
                 {...register('fullName', { required: true, minLength: 2 })}
                 onChange={handleChange}
               />
@@ -59,7 +59,7 @@ const Shipping = () => {
                   : ''
               }</span>
               <input
-                type="text" name='address' id='address' value={shippingInfo.address}
+                type="text" name='address' value={shippingInfo.address}
                 {...register('address', { required: true, minLength: 2 })}
                 onChange={handleChange}
               />
@@ -74,7 +74,7 @@ const Shipping = () => {
                   : ''
               }</span>
               <input
-                type="text" name='city' id='city' value={shippingInfo.city}
+                type="text" name='city' value={shippingInfo.city}
                 {...register('city', { required: true, minLength: 2 })}
                 onChange={handleChange}
               />
@@ -89,14 +89,14 @@ const Shipping = () => {
                   : ''
               }</span>
               <input
-                type="text" name='postalCode' id='postalCode' value={shippingInfo.postalCode}
+                type="text" name='postalCode' value={shippingInfo.postalCode}
                 {...register('postalCode', { required: true, minLength: 5 })}
                 onChange={handleChange}
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor='country'>Country </label>
+              <label htmlFor='country'>Country</label>
               <span className="error">{
                 errors.country ? errors.country.type === 'minLength'
                   ? 'length is more than 1'
@@ -104,7 +104,7 @@ const Shipping = () => {
                   : ''
               }</span>
               <input
-                type="text" name='country' id='country' value={shippingInfo.country}
+                type="text" name='country' value={shippingInfo.country}
                 {...register('country', { required: true, minLength: 2 })}
                 onChange={handleChange}
               />

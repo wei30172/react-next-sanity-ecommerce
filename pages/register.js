@@ -43,7 +43,7 @@ const Register = () => {
                 : ''
             }</span>
             <input
-              type="text" name='name' id='name'
+              type="text" name='name'
               {...register('name', { required: true, minLength: 2 })}
               onChange={handleChange}
             />
@@ -58,7 +58,7 @@ const Register = () => {
                 : ''
             }</span>
             <input
-              type="email" name='email' id='email'
+              type="email" name='email'
               {...register('email', { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ })}
               onChange={handleChange}
             />
@@ -73,7 +73,7 @@ const Register = () => {
                 : ''
             }</span>
             <input
-              type="password" name='password' id='password'
+              type="password" name='password'
               {...register('password', { required: true, minLength: 6 })}
               onChange={handleChange}
             />
@@ -88,7 +88,7 @@ const Register = () => {
                 : ''
             }</span>
             <input
-              type="password" name='confirmPassword' id='confirmPassword'
+              type="password" name='confirmPassword'
               {...register('confirmPassword', { required: true, minLength: 6 })}
               onChange={handleChange}
             />

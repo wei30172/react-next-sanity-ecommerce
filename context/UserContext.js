@@ -12,14 +12,17 @@ export const UserContext = ({ children }) => {
   const router = useRouter();
   
   const [userInfo, setUserInfo] = useState(getCookie("userInfo", null));
+  
   const [shippingAddress, setShippingAddress] = useState(getCookie("shippingAddress", {
     fullName: "",
     address: "",
     city: "",
     postalCode: "",
-    address: ""
+    country: ""
   }));
 
+  const [paymentMethod, setPaymentMethod] = useState(getCookie("paymentMethod", null));
+  
   useEffect(() => {
     setCookie("userInfo", userInfo);
   }, [userInfo]);
@@ -59,15 +62,33 @@ export const UserContext = ({ children }) => {
     toast.success(`You've been logged out.`);
     jsCookie.remove("userInfo");
     jsCookie.remove("shippingAddress");
+    jsCookie.remove("paymentMethod");
     setUserInfo(null);
-    setShippingAddress(null);
+    setShippingAddress({
+      fullName: "",
+      address: "",
+      city: "",
+      postalCode: "",
+      country: ""
+    });
+    setPaymentMethod(null);
   }
 
-  const saveShippingAddress = async (info) => {
+  const saveShippingAddress = (info) => {
     try {
       setShippingAddress(info);
-      setCookie("shippingAddress", shippingAddress);
+      setCookie("shippingAddress", info);
       router.push('/payment');
+    } catch (err) {
+      toast.error(getError(err));
+    }
+  }
+
+  const savePaymentMethod = (method) => {
+    try {
+      setPaymentMethod(method);
+      setCookie("paymentMethod", method);
+      router.push('/placeorder');
     } catch (err) {
       toast.error(getError(err));
     }
@@ -81,8 +102,9 @@ export const UserContext = ({ children }) => {
         userRegister,
         userLogout,
         shippingAddress,
-        setShippingAddress,
-        saveShippingAddress
+        saveShippingAddress,
+        paymentMethod,
+        savePaymentMethod,
       }}
     >
       { children }

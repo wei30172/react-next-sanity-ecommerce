@@ -272,19 +272,19 @@
   }
 }
 
-// Page: Shipping
-.shipping-wrapper {
+// Page: Shipping, Payment
+.shipping-wrapper, .payment-wrapper{
   height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .shipping-container{
+  .shipping-container, .payment-container{
     color: $text-color;
     display: flex;
     justify-content: center;
     align-items: center;
-    input{
+    &.shipping-container input{
       appearance: none;
       border: none;
       outline: none;
@@ -304,6 +304,9 @@
         background-position: 100%;
         transform: scale(1,1);
       }
+      &.back{
+        background: $text-color;
+      }
     }
     form{
       position: relative;
@@ -313,7 +316,7 @@
         padding: 15px;
         z-index: 2;
         .form-group{
-          width: 300px;
+          width: 320px;
           margin: 0 auto;
           margin-bottom: 5px;
           .error{
@@ -337,6 +340,16 @@
           }
           &:focus-within input {
             border: 1px solid $main-color;
+          }
+        }
+        .radio-group{
+          width: 300px;
+          margin: 40px auto 40px;
+          label{
+            font-size: 20px;
+          }
+          input{
+            margin-right: 10px;
           }
         }
       }
