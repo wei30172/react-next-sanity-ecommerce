@@ -2,11 +2,10 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../utils/client';
-import getStripe from '../utils/getStripe';
 
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
-import toast from 'react-hot-toast';
+import { EmptyCart } from '../components';
 
 const Cart = () => {
   const cartRef = useRef();
@@ -44,19 +43,7 @@ const Cart = () => {
         </button>
 
         {cartItems.length < 1 && (
-          <div className="empty-cart">
-            <AiOutlineShopping size={150} />
-            <h3>Your shopping cart is empty</h3>
-            <Link href="/">
-              <button
-                type="button"
-                className="btn"
-                onClick={() => setShowCart(false)}
-              >
-                Continue Shopping
-              </button>
-            </Link>
-          </div>
+          <EmptyCart showEmpty={true} />
         )}
 
         <div className="product-container">
