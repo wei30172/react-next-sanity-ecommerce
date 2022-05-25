@@ -12,7 +12,6 @@ export const UserContext = ({ children }) => {
   const router = useRouter();
   
   const [userInfo, setUserInfo] = useState(getCookie("userInfo", null));
-  
   const [shippingAddress, setShippingAddress] = useState(getCookie("shippingAddress", {
     fullName: "",
     address: "",
@@ -20,9 +19,8 @@ export const UserContext = ({ children }) => {
     postalCode: "",
     country: ""
   }));
-
   const [paymentMethod, setPaymentMethod] = useState(getCookie("paymentMethod", null));
-  
+
   useEffect(() => {
     setCookie("userInfo", userInfo);
   }, [userInfo]);
@@ -93,7 +91,7 @@ export const UserContext = ({ children }) => {
       toast.error(getError(err));
     }
   }
-
+  
   return (
     <Context.Provider
       value={{
@@ -104,7 +102,7 @@ export const UserContext = ({ children }) => {
         shippingAddress,
         saveShippingAddress,
         paymentMethod,
-        savePaymentMethod,
+        savePaymentMethod
       }}
     >
       { children }

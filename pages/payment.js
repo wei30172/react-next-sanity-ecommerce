@@ -33,7 +33,7 @@ const payment = () => {
       <div className="payment-container">
         <form onSubmit={handleSubmit}>
           <div className="form-inner">
-            <h2>Shipping Address</h2>
+            <h2>Payment Method</h2>
             <div className="radio-group">
               <label>
                 <input
@@ -61,7 +61,7 @@ const payment = () => {
               </label>
             </div>
             <input className="btn" type="submit" value="Continue" />
-            <input className="btn back" type="button" value="Back" onClick={() => router.push('/shipping')}/>
+            <input className="btn back" type="button" value="Edit Address" onClick={() => router.push('/shipping')}/>
           </div>
         </form>
       </div>

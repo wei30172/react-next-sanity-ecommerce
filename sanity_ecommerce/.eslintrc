@@ -1,3 +1,7 @@
 {
-  "extends": "@sanity/eslint-config-studio"
+  "env": { "browser": true, "node": true, "es6": true },
+  "extends":  ["@sanity/eslint-config-studio", "eslint:recommended", "next", "next/core-web-vitals"],
+  "rules": {
+    "import/no-anonymous-default-export": 0
+  }
 }

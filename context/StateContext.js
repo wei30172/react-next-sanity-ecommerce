@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
+import jsCookie from 'js-cookie';
 import { setCookie, getCookie } from '../utils/jsCookie'
 import { toast } from 'react-hot-toast';
 
@@ -7,7 +8,7 @@ const Context = createContext();
 export const StateContext = ({ children }) => {
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState(getCookie("cartItems", []));
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [itemsPrice, setItemsPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [qty, setQty] = useState(1);
   const [darkMode, setDarkMode] = useState(false);
@@ -20,7 +21,7 @@ export const StateContext = ({ children }) => {
 
   useEffect(() => {
     setTotalQuantities(() => getLocalTotalQuantities(0));
-    setTotalPrice(() => getLocalTotalPrice(0));
+    setItemsPrice(() => getLocalTotalPrice(0));
   }, []);
 
   function getLocalTotalQuantities(initialValue) {
@@ -59,7 +60,7 @@ export const StateContext = ({ children }) => {
     const checkProductInCart = cartItems.find((item) => item._id === product._id);
     
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
-    setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+    setItemsPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
 
     if (checkProductInCart) {
       const updateCartItems = cartItems.map((cartProduct) => {
@@ -84,7 +85,7 @@ export const StateContext = ({ children }) => {
     
     setCartItems(newCartItems);
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
-    setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
+    setItemsPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
     
   }
 
@@ -98,15 +99,22 @@ export const StateContext = ({ children }) => {
         return;
       }
       setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 } ]);
-      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+      setItemsPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
       setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
     } else if(value === 'dec') {
       if (foundProduct.quantity > 1) {
         setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 } ]);
-        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+        setItemsPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
         setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
       }
     }
+  }
+
+  const clearCart = () => {
+    jsCookie.remove("cartItems");
+    setCartItems([]);
+    setItemsPrice(0);
+    setTotalQuantities(0);
   }
 
   return (
@@ -115,7 +123,7 @@ export const StateContext = ({ children }) => {
         showCart,
         setShowCart,
         cartItems,
-        totalPrice,
+        itemsPrice,
         totalQuantities,
         qty,
         incQty,
@@ -124,8 +132,8 @@ export const StateContext = ({ children }) => {
         removeFromCart,
         updateCartItemQuanitity,
         setCartItems,
-        setTotalPrice,
         setTotalQuantities,
+        clearCart,
         darkMode,
         setDarkMode
       }}

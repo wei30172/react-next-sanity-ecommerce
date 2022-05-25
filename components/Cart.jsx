@@ -9,7 +9,7 @@ import { EmptyCart } from '../components';
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, updateCartItemQuanitity, removeFromCart } = useStateContext();
+  const { itemsPrice, totalQuantities, cartItems, setShowCart, updateCartItemQuanitity, removeFromCart } = useStateContext();
 
   // const handleCheckout = async () => {
   //   const stripe = await getStripe();
@@ -84,7 +84,7 @@ const Cart = () => {
           <div className="cart-bottom">
             <div className="total">
               <h3>Total before Shipping & Tax:</h3>
-              <h3>${totalPrice}</h3>
+              <h3>${itemsPrice}</h3>
             </div>
             <div className="btn-container">
               <Link href="/shipping"><button type="button" className="btn">

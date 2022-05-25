@@ -272,6 +272,24 @@
   }
 }
 
+// Page: Shipping, Payment, Placeorder
+.shipping-wrapper, .payment-wrapper, .placeorder-wrapper{
+  .btn{
+    background-image: linear-gradient(to right, $main-color 50%, $main-color 50%, $red-color);
+    background-size: 200%;
+    background-position: 0%;
+    transition: .5 ease-in-out;
+    margin-bottom: 5px;
+    &:hover{
+      background-position: 100%;
+      transform: scale(1,1);
+    }
+    &.back{
+      background: $text-color;
+    }
+  }
+}
+
 // Page: Shipping, Payment
 .shipping-wrapper, .payment-wrapper{
   height: 80vh;
@@ -293,20 +311,6 @@
       font-size: 28px;
       font-weight: 500;
       margin-bottom: 10px;
-    }
-    .btn{
-      background-image: linear-gradient(to right, $main-color 50%, $main-color 50%, $red-color);
-      background-size: 200%;
-      background-position: 0%;
-      transition: .5 ease-in-out;
-      margin-bottom: 5px;
-      &:hover{
-        background-position: 100%;
-        transform: scale(1,1);
-      }
-      &.back{
-        background: $text-color;
-      }
     }
     form{
       position: relative;
@@ -359,4 +363,72 @@
       cursor: pointer;
     }
   } 
+}
+
+// Page: Placeorder
+.placeorder-wrapper, .order-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  padding: 5px;
+  .placeorder-container, .order-container{
+    color: $text-color;
+    display: flex;
+    h2{
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .info-group {
+      display: flex;
+      flex-direction: column;
+      background-color: $gray-color;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 20px 10px;
+      &.summary{
+        max-height: 250px;
+      }
+      .btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        .btn{
+          width: 80px;
+          padding: 5px;
+        }
+      }
+      .status-wrapper{
+        display: flex;
+        justify-content: flex-end;
+      }
+      .placeorder-item-image{
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 15px;
+        background-color: $bg-color;
+        cursor: pointer;
+      }
+      .confirm{
+        .confirm-info{
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:800px) {
+  .placeorder-wrapper{
+    .placeorder-container{
+      flex-direction: column;
+      .info-group{
+        &.total{
+          display: none;
+        }
+      }
+    }
+  }
 }
