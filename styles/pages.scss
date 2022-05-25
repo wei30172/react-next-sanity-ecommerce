@@ -376,6 +376,11 @@
   .placeorder-container, .order-container{
     color: $text-color;
     display: flex;
+    h1{
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
     h2{
       font-size: 20px;
       font-weight: 500;
@@ -389,7 +394,8 @@
       padding: 15px;
       margin: 20px 10px;
       &.summary{
-        max-height: 250px;
+        max-height: 330px;
+        min-width: 230px;
       }
       .btn-wrapper {
         display: flex;
@@ -400,8 +406,12 @@
         }
       }
       .status-wrapper{
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding: 10px 0;
+        border-top: 2px solid #fff;
       }
       .placeorder-item-image{
         width: 80px;
@@ -421,8 +431,8 @@
   }
 }
 @media screen and (max-width:800px) {
-  .placeorder-wrapper{
-    .placeorder-container{
+  .placeorder-wrapper, .order-wrapper{
+    .placeorder-container, .order-container{
       flex-direction: column;
       .info-group{
         &.total{

@@ -14,7 +14,7 @@ const Register = () => {
     if (userInfo) {
       router.push(redirect || '/');
     }
-  }, [router, userInfo, redirect]);
+  }, [userInfo]);
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   

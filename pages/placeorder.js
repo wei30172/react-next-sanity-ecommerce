@@ -27,7 +27,7 @@ const placeorder = () => {
     if (!paymentMethod) {
       router.push('/payment');
     }
-  }, [paymentMethod, router]);
+  }, [paymentMethod]);
 
   const handlePlaceOrder = async () => {
     try {
@@ -36,6 +36,8 @@ const placeorder = () => {
         '/api/orders',
         {
           orderItems: cartItems.map((item) => ({
+            _key: item._id,
+            slug: item.slug,
             image: item.image,
             name: item.name,
             quantity: item.quantity,
