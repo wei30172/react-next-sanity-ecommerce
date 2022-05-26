@@ -132,13 +132,13 @@
     font-size: 4rem;
     margin-top: 4px;
   }
-  .hero-banner-image{
+  .hero-banner-image-container{
     position: absolute;
-    top: 0%;
-    right:20%;
-    width: 450px;
-    height: 450px;
-    object-fit: cover;
+    top: 0;
+    right: 15%;
+    .hero-banner-image{
+      object-fit: cover;
+    }
   }
   button{
     border-radius: 15px;
@@ -183,12 +183,11 @@
     h3{
       font-size: 40px;
     }
-    .hero-banner-image{
-      width: 70%;
-      height: 70%;
-      top: 0;
+    .hero-banner-image-container{
+      position: absolute;
+      top: 10%;
       right: 0;
-      object-fit: contain;
+      left: 20%;
     }
     button{
       margin-top: 90px;
@@ -343,8 +342,6 @@
         gap: 30px;
         padding: 20px;
         .cart-product-image{
-          width: 150px;
-          height: 150px;
           object-fit: cover;
           border-radius: 15px;
           background-color: $bg-color;

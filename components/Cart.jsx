@@ -34,8 +34,10 @@ const Cart = () => {
           <div className="product" key={item._id}>
           <Link href={`/product/${item.slug.current}`}>
             <Image
-              src={urlFor(item?.image[0])}
+              src={urlFor(item?.image[0]).url()}
               alt={item.name}
+              width={150}
+              height={150}
               className="cart-product-image"
             />
           </Link>

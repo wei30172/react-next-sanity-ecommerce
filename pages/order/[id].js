@@ -184,8 +184,10 @@ const Order = ({ params }) => {
                     <td>
                       <Link href={`/product/${item.slug.current}`}>
                         <Image
-                          src={urlFor(item?.image[0])}
+                          src={urlFor(item?.image[0]).url()}
                           alt={item.name}
+                          width={80}
+                          height={80}
                           className="placeorder-item-image"
                         />
                       </Link>

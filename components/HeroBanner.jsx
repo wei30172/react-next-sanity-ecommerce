@@ -10,11 +10,15 @@ const HeroBanner = ({ heroBanner }) => {
         <p className="beats-solo">{ heroBanner.smallText }</p>
         <h3>{ heroBanner.midText }</h3>
         <h1>{ heroBanner.largeText1 }</h1>
-        <Image
-          src={urlFor(heroBanner.image)}
-          alt='headphones'
-          className="hero-banner-image"
-        />
+        <div className="hero-banner-image-container">
+          <Image
+            src={urlFor(heroBanner.image).url()}
+            alt='headphones'
+            width={450}
+            height={450}
+            className="hero-banner-image"
+          />
+        </div>
         <div>
           <Link href={`/product/${heroBanner.product}`}>
             <button type='button'>{heroBanner.buttonText}</button>

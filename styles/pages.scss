@@ -47,8 +47,6 @@
     .small-image{
       border-radius: 8px;
       background-color: $bg-color;
-      width: 70px;
-      height: 70px;
       cursor: pointer;
       &.selected-image{
         padding: .3rem;
@@ -419,8 +417,6 @@
         border-top: 2px solid #fff;
       }
       .placeorder-item-image{
-        width: 80px;
-        height: 80px;
         object-fit: cover;
         border-radius: 15px;
         background-color: $bg-color;
