@@ -4,11 +4,13 @@ import Link from 'next/link';
 import { useUserContext } from '../context/UserContext';
 import { useForm } from 'react-hook-form';
 
+import { GrInProgress } from 'react-icons/gr';
+
 const Register = () => {
   const router = useRouter();
   const { redirect } = router.query;
 
-  const { userInfo, userRegister }  = useUserContext();
+  const { userInfo, userRegister, userLoading }  = useUserContext();
   
   const { register, handleSubmit, formState: { errors } } = useForm();
   
@@ -30,6 +32,10 @@ const Register = () => {
 
   return (
     <div className="register-wrapper">
+    {userLoading ? (
+      <GrInProgress size={30}/>
+    ) : (
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-inner">
           <h2>Register</h2>
@@ -99,6 +105,8 @@ const Register = () => {
           <Link href={`/login?redirect=${redirect || '/'}`}><span className="link"> Login</span></Link>
         </div>
       </form>
+    </>
+    )}
     </div>
   )
 }

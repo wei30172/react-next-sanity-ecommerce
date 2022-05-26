@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
   return (
     <div className={darkMode ? 'layout dark-mode-on' : 'layout dark-mode-off'}>
       <Head>
-        <title>Sanity Store</title>
+        <title>React E-Commerce Website</title>
       </Head>
       <header>
         <Navbar />

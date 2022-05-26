@@ -11,6 +11,7 @@ const Context = createContext();
 export const UserContext = ({ children }) => {
   const router = useRouter();
   
+  const [userLoading, setUserLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(getCookie("userInfo", null));
   const [shippingAddress, setShippingAddress] = useState(getCookie("shippingAddress", {
     fullName: "",
@@ -27,13 +28,16 @@ export const UserContext = ({ children }) => {
 
   const userLogin = async ({email, password} = info, redirect) => {
     try {
+      setUserLoading(true);
       const { data } = await axios.post('/api/users/login', {
         email,
         password,
       });
-      setUserInfo(data)
+      setUserInfo(data);
+      setUserLoading(false);
       router.push(redirect || '/');
     } catch (err) {
+      setUserLoading(false);
       toast.error(getError(err));
     }
   }
@@ -44,14 +48,17 @@ export const UserContext = ({ children }) => {
       return;
     }
     try {
+      setUserLoading(true);
       const { data } = await axios.post('/api/users/register', {
         name,
         email,
         password,
       });
-      setUserInfo(data)
+      setUserInfo(data);
+      setUserLoading(false);
       router.push(redirect || '/');
     } catch (err) {
+      setUserLoading(false);
       toast.error(getError(err));
     }
   }
@@ -111,6 +118,7 @@ export const UserContext = ({ children }) => {
     <Context.Provider
       value={{
         userInfo,
+        userLoading,
         userLogin,
         userRegister,
         userUpdate,
