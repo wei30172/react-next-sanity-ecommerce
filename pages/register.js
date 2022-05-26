@@ -18,7 +18,7 @@ const Register = () => {
     if (userInfo) {
       router.push(redirect || '/');
     }
-  }, [router, userInfo])
+  }, [userInfo, router, redirect])
 
   const onSubmit = () => {
     userRegister(userInput, redirect);

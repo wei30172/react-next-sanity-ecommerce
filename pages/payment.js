@@ -16,7 +16,7 @@ const Payment = () => {
     if (!shippingAddress.address) {
       router.push('/shipping');
     }
-  }, [shippingAddress]);
+  }, [shippingAddress, router]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

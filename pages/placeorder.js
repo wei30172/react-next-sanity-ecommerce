@@ -28,7 +28,7 @@ const Placeorder = () => {
     if (!paymentMethod) {
       router.push('/payment');
     }
-  }, [paymentMethod]);
+  }, [paymentMethod, router]);
 
   const handlePlaceOrder = async () => {
     try {
@@ -118,7 +118,11 @@ const Placeorder = () => {
                     <tr key={item._id}>
                       <td>
                         <Link href={`/product/${item.slug.current}`}>
-                          <Image className="placeorder-item-image" src={urlFor(item?.image[0])}/>
+                          <Image
+                            src={urlFor(item?.image[0])}
+                            alt={item.name}
+                            className="placeorder-item-image"
+                          />
                         </Link>
                       </td>
                       <td>{item.name}</td>

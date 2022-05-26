@@ -18,7 +18,7 @@ const Login = () => {
     if (userInfo) {
       router.push(redirect || '/');
     }
-  }, [userInfo]);
+  }, [userInfo, router, redirect]);
 
   const onSubmit = () => {
     userLogin(userInput, redirect);

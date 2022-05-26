@@ -94,7 +94,7 @@ const Order = ({ params }) => {
         loadPaypalScript();
       }
     }
-  }, [userInfo, order, orderId, successPay]);
+  }, [userInfo, router, order, orderId, successPay]);
 
   const createOrder = (data, actions) => {
     return actions.order
@@ -183,7 +183,11 @@ const Order = ({ params }) => {
                   <tr key={item._key}>
                     <td>
                       <Link href={`/product/${item.slug.current}`}>
-                        <Image src={urlFor(item?.image[0])} className="placeorder-item-image" />
+                        <Image
+                          src={urlFor(item?.image[0])}
+                          alt={item.name}
+                          className="placeorder-item-image"
+                        />
                       </Link>
                     </td>
                     <td>{item.name}</td>
