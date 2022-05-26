@@ -181,8 +181,8 @@ const Order = ({ params }) => {
               <tbody>
                 {orderItems.map((item) => (
                   <tr key={item._key}>
-                    <td>
-                      <Link href={`/product/${item.slug.current}`}>
+                    <Link href={`/product/${item.slug.current}`}>
+                      <td>
                         <Image
                           src={urlFor(item?.image[0]).url()}
                           alt={item.name}
@@ -190,8 +190,8 @@ const Order = ({ params }) => {
                           height={80}
                           className="placeorder-item-image"
                         />
-                      </Link>
-                    </td>
+                      </td>
+                    </Link>
                     <td>{item.name}</td>
                     <td>{item.quantity}</td>
                     <td>${item.price}</td>
