@@ -25,7 +25,7 @@ const OrderHistory = () => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get(`/api/orders/history`, {
+        const { data } = await axios.get('/api/orders/history', {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         setLoading(false);
