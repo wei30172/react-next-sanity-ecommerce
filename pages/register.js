@@ -64,7 +64,7 @@ const Register = () => {
             }</span>
             <input
               type="email" name='email'
-              {...register('email', { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ })}
+              {...register('email', { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ })}
               onChange={handleChange}
             />
           </div>
