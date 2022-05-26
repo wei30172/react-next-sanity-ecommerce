@@ -7,6 +7,7 @@ import { getError }from '../utils/getError';
 import axios from 'axios';
 
 import { GrInProgress } from 'react-icons/gr';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { toast } from 'react-hot-toast';
 
 const OrderHistory = () => {
@@ -48,6 +49,17 @@ const OrderHistory = () => {
       <div className="orders-container">
         <div>
           <h1>Order History</h1>
+          {orders.length < 1 ? (
+            <div className="empty-orders">
+              <AiOutlineShoppingCart size={150} />
+              <h3>Your order histor is empty</h3>
+              <Link href="/">
+                <button type="button" className="btn">
+                  Let's Shopping!
+                </button>
+              </Link>
+            </div>
+          ) : (
           <div className="orders-list">
             <table>
               <thead>
@@ -88,6 +100,7 @@ const OrderHistory = () => {
               </tbody>
             </table>
           </div>
+          )}
         </div>
       </div>
     </>
