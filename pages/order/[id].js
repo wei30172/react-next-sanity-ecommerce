@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useUserContext } from '../../context/UserContext';
 import { getError }from '../../utils/getError';
 import { urlFor } from '../../utils/client';
@@ -182,7 +183,7 @@ const Order = ({ params }) => {
                   <tr key={item._key}>
                     <td>
                       <Link href={`/product/${item.slug.current}`}>
-                        <img className="placeorder-item-image" src={urlFor(item?.image[0])}/>
+                        <Image src={urlFor(item?.image[0])} className="placeorder-item-image" />
                       </Link>
                     </td>
                     <td>{item.name}</td>

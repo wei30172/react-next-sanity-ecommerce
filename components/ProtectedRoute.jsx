@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
     if (!userInfo) {
       router.push('/login')
     }
-  }, [userInfo])
+  }, [router, userInfo])
 
   if (!userInfo) return null
 

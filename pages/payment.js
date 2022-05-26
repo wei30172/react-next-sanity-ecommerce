@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 import { CheckoutWizard } from '../components';
 
-const payment = () => {
+const Payment = () => {
   const router = useRouter();
 
   const { shippingAddress, paymentMethod, savePaymentMethod }  = useUserContext();
@@ -69,4 +69,4 @@ const payment = () => {
   )
 }
 
-export default payment
+export default Payment

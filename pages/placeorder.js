@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useUserContext } from '../context/UserContext';
 import { useStateContext } from '../context/StateContext';
 import { getError }from '../utils/getError';
@@ -12,7 +13,7 @@ import { GrInProgress } from 'react-icons/gr';
 import { CheckoutWizard, EmptyCart } from '../components';
 import { toast } from 'react-hot-toast';
 
-const placeorder = () => {
+const Placeorder = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { userInfo, shippingAddress, paymentMethod }  = useUserContext();
@@ -117,7 +118,7 @@ const placeorder = () => {
                     <tr key={item._id}>
                       <td>
                         <Link href={`/product/${item.slug.current}`}>
-                          <img className="placeorder-item-image" src={urlFor(item?.image[0])}/>
+                          <Image className="placeorder-item-image" src={urlFor(item?.image[0])}/>
                         </Link>
                       </td>
                       <td>{item.name}</td>
@@ -171,4 +172,4 @@ const placeorder = () => {
   )
 }
 
-export default dynamic(() => Promise.resolve(placeorder), { ssr: false });
+export default dynamic(() => Promise.resolve(Placeorder), { ssr: false });

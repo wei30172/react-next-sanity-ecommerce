@@ -11,7 +11,7 @@ const Success = () => {
   useEffect(() => {
     clearCart();
     runFireworks();
-  }, []);
+  }, [clearCart]);
 
   return (
     <div className="success-wrapper">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useStateContext } from '../../context/StateContext';
 import { client, urlFor } from '../../utils/client';
 
@@ -21,11 +22,11 @@ const ProductDetails = ({ product, products }) => {
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            <img src={image && urlFor(image[index])} className="product-detail-image" />
+            <Image src={image && urlFor(image[index])} className="product-detail-image" />
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
-              <img 
+              <Image 
                 key={i}
                 src={urlFor(item)}
                 className={i === index ? 'small-image selected-image' : 'small-image'}

@@ -20,7 +20,7 @@ const Profile = () => {
     if (!userInfo) {
       router.push('/login')
     }
-  }, [userInfo])
+  }, [router, userInfo])
 
   const onSubmit = () => {
     userUpdate(userInput)

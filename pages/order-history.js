@@ -37,7 +37,7 @@ const OrderHistory = () => {
     if (userInfo) {
       fetchOrders();
     }
-  }, [userInfo]);
+  }, [router, userInfo]);
 
   return (
     <div className="orders-wrapper">

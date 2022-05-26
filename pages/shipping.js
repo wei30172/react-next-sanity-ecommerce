@@ -18,7 +18,7 @@ const Shipping = () => {
     if (!userInfo) {
       router.push('/login?redirect=/shipping');
     }
-  }, [userInfo]);
+  }, [router, userInfo])
 
   const onSubmit = () => {
     saveShippingAddress(shippingInfo);
