@@ -9,18 +9,17 @@ const Register = () => {
   const { redirect } = router.query;
 
   const { userInfo, userRegister }  = useUserContext();
-
+  
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
+  const [userInput, setUserInput] = useState({name: "", email: "", password: "", confirmPassword: ""})
+  
   useEffect(() => {
     if (userInfo) {
       router.push(redirect || '/');
     }
   }, [userInfo]);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  
-  const [userInput, setUserInput] = useState({name: "", email: "", password: "", confirmPassword: ""})
-
-  
   const onSubmit = () => {
     userRegister(userInput, redirect);
   }

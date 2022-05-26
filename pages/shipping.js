@@ -110,7 +110,7 @@ const Shipping = () => {
               />
             </div>
 
-            <input className="btn" type="submit" value="Continue" />
+            <input className="btn" type="submit" value="CONTINUE" />
           </div>
         </form>
       </div>

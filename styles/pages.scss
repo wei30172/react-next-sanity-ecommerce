@@ -133,8 +133,8 @@
   }
 }
 
-// Page: Login, Register
-.login-wrapper, .register-wrapper{
+// Page: Login, Register, Profile
+.login-wrapper, .register-wrapper, .profile-wrapper{
   height: 80vh;
   color: $text-color;
   display: flex;
@@ -156,6 +156,9 @@
     background-position: 0%;
     transition: .5 ease-in-out;
     margin-bottom: 5px;
+    &.back{
+      background-image: linear-gradient(to right, $text-color 50%, $text-color 50%, $gray-color);
+    }
     &:hover{
       background-position: 100%;
       transform: scale(1,1);

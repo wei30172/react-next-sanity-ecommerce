@@ -10,15 +10,15 @@ const Login = () => {
   
   const { userInfo, userLogin }  = useUserContext();
   
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
+  const [userInput, setUserInput] = useState({email: "", password: ""})
+  
   useEffect(() => {
     if (userInfo) {
       router.push(redirect || '/');
     }
   }, [userInfo]);
-
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  
-  const [userInput, setUserInput] = useState({email: "", password: ""})
 
   const onSubmit = () => {
     userLogin(userInput, redirect);

@@ -60,8 +60,8 @@ const payment = () => {
                 Cash
               </label>
             </div>
-            <input className="btn" type="submit" value="Continue" />
-            <input className="btn back" type="button" value="Edit Address" onClick={() => router.push('/shipping')}/>
+            <input className="btn" type="submit" value="CONTINUE" />
+            <input className="btn back" type="button" value="EDIT ADDRESS" onClick={() => router.push('/shipping')}/>
           </div>
         </form>
       </div>

@@ -56,6 +56,21 @@ export const UserContext = ({ children }) => {
     }
   }
 
+  const userUpdate = async ({name, email} = info) => {
+    try {
+      const { data } = await axios.put('/api/users/profile', {
+        name,
+        email,
+      },
+      { headers: { authorization: `Bearer ${userInfo.token}` } }
+    );
+      setUserInfo(data)
+      toast.success('Profile updated successfully');
+    } catch (err) {
+      toast.error(getError(err));
+    }
+  }
+
   const userLogout = () => {
     toast.success(`You've been logged out.`);
     jsCookie.remove("userInfo");
@@ -98,6 +113,7 @@ export const UserContext = ({ children }) => {
         userInfo,
         userLogin,
         userRegister,
+        userUpdate,
         userLogout,
         shippingAddress,
         saveShippingAddress,
