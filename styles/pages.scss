@@ -365,15 +365,15 @@
   } 
 }
 
-// Page: Placeorder
-.placeorder-wrapper, .order-wrapper{
+// Page: Placeorder, Order, OrderHistory
+.placeorder-wrapper, .order-wrapper, .orders-wrapper{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 10px auto;
   padding: 5px;
-  .placeorder-container, .order-container{
+  .placeorder-container, .order-container, .orders-container{
     color: $text-color;
     display: flex;
     h1{
@@ -397,12 +397,14 @@
         max-height: 330px;
         min-width: 230px;
       }
+      &.pay-summary{
+        min-width: 230px;
+      }
       .btn-wrapper {
         display: flex;
         justify-content: flex-end;
         .btn{
           width: 80px;
-          padding: 5px;
         }
       }
       .status-wrapper{
@@ -437,6 +439,47 @@
       .info-group{
         &.total{
           display: none;
+        }
+      }
+    }
+  }
+}
+.orders-wrapper{
+  .orders-list{
+    thead{
+      background-color: $gray-color;
+      th{
+        padding: 10px;
+      }
+    }
+    tbody{
+      tr:nth-child(even) {
+        background-color: $gray-color;
+      }
+      td{
+        padding: 5px;
+      }
+    }
+  }
+}
+@media screen and (max-width:800px) {
+  .orders-wrapper{
+    .orders-list{
+      thead{
+        display: none;
+      }
+      tbody{
+        tr{
+          background-color: $gray-color;
+          display: flex;
+          flex-direction: column;
+          padding: 20px;
+          margin-bottom: 10px;
+          border-radius: 15px;
+        }
+        td{
+          display: flex;
+          justify-content: space-between;
         }
       }
     }

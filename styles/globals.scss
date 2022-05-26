@@ -21,18 +21,22 @@ body, * {
   color: white;
 }
 
-a {
+a{
   color: inherit;
   text-decoration: none;
+}
+
+ul{
+  list-style: none;
 }
 
 .btn{
   width: 100%;
   max-width: 400px;
-  padding: 10px 12px;
-  border-radius: 15px;
+  padding: 8px 6px;
+  border-radius: 8px;
   border: none;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 10px;
   text-transform: uppercase;
   background-color: $main-color;
@@ -43,13 +47,6 @@ a {
   transition: transform 0.5s ease;
   &:hover{
     transform: scale(1.1,1.1);
-  }
-}
-@media screen and (max-width:800px) {
-  .btn{
-    padding: 5px 6px;
-    border-radius: 8px;
-    font-size: 16px;
   }
 }
 

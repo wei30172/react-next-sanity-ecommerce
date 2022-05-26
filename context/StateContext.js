@@ -7,6 +7,7 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [showCart, setShowCart] = useState(false);
+  const [showMenu, setShowCMenu] = useState(false);
   const [cartItems, setCartItems] = useState(getCookie("cartItems", []));
   const [itemsPrice, setItemsPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
@@ -122,6 +123,8 @@ export const StateContext = ({ children }) => {
       value={{
         showCart,
         setShowCart,
+        showMenu,
+        setShowCMenu,
         cartItems,
         itemsPrice,
         totalQuantities,

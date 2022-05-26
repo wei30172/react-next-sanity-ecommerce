@@ -8,10 +8,11 @@ import { AiOutlineShopping, AiFillHome } from 'react-icons/ai'
 import { BsMoonFill, BsSunFill } from 'react-icons/bs'
 
 import Cart from './Cart';
+import Menu from './Menu';
 
 const Navbar = () => {
-  const { showCart, setShowCart, totalQuantities, darkMode, setDarkMode } = useStateContext();
-  const { userInfo, userLogout }  = useUserContext();
+  const { showCart, setShowCart, showMenu, setShowCMenu, totalQuantities, darkMode, setDarkMode } = useStateContext();
+  const { userInfo }  = useUserContext();
   // const { netlifyUser, authReady, netlifyLogin, netlifyLogout }  = useAuthContext();
   
   return (
@@ -25,11 +26,9 @@ const Navbar = () => {
             <Link href={`/login`}><button type="button" className="btn">Login</button></Link>
           }
           {userInfo &&
-            <Link href="/dashboard">{userInfo.name}</Link>
+            <div className="user-name" onClick={() => setShowCMenu(!showMenu)}>{userInfo.name}</div>
           }
-          {userInfo &&
-            <button type="button" className="btn" onClick={userLogout}>Log out</button>
-          }
+          {userInfo && showMenu && <Menu />}
         </div>
         <div className="cart-icon-container">
           <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>

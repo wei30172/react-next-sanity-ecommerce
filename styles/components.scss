@@ -230,9 +230,16 @@
       }
     }
     .button-container {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 10px;
+      .user-name{
+        &:hover{
+          color: $main-color;
+          cursor: pointer;
+        }
+      }
       .btn{
         margin-top: 0;
       }
@@ -471,6 +478,28 @@
   }
 }
 
+// component: Menu
+.menu-wrapper{
+  position: absolute;
+  left: 0;
+  top: 35px;
+  z-index: 100;
+  transition: all .5s ease-in-out;
+  .menu-container{
+    background-color: white;
+    color: $text-color;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    li{
+      padding: 10px;
+      border-radius: 5px;
+      &:hover{
+        cursor: pointer;
+        background-color: rgba($color: $gray-color, $alpha: 0.8);
+      }
+    }
+  }
+}
 // component: CheckoutWizard
 .checkoutWizard-container{
   margin: 10px auto;

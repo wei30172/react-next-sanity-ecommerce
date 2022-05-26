@@ -82,14 +82,16 @@ const Order = ({ params }) => {
       }
     };
 
-    if (!order._id || successPay || (order._id && order._id !== orderId)) {
-      if (!successPay) {
-        setLoading(false);
-        setSuccessPay(false);
+    if (userInfo){
+      if (!order._id || successPay || (order._id && order._id !== orderId)) {
+        if (!successPay) {
+          setLoading(false);
+          setSuccessPay(false);
+        }
+        fetchOrder();
+      } else {
+        loadPaypalScript();
       }
-      fetchOrder();
-    } else {
-      loadPaypalScript();
     }
   }, [userInfo, order, orderId, successPay]);
 
@@ -176,13 +178,13 @@ const Order = ({ params }) => {
                 </tr>
               </thead>
               <tbody>
-                {orderItems.map((item, index) => (
+                {orderItems.map((item) => (
                   <tr key={item._key}>
-                      <td>
-                        <Link href={`/product/${item.slug.current}`}>
-                          <img className="placeorder-item-image" src={urlFor(item?.image[0])}/>
-                        </Link>
-                      </td>
+                    <td>
+                      <Link href={`/product/${item.slug.current}`}>
+                        <img className="placeorder-item-image" src={urlFor(item?.image[0])}/>
+                      </Link>
+                    </td>
                     <td>{item.name}</td>
                     <td>{item.quantity}</td>
                     <td>${item.price}</td>

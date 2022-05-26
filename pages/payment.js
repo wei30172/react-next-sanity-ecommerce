@@ -43,7 +43,7 @@ const payment = () => {
                 PayPal
               </label>
             </div>
-            <div className="radio-group">
+            {/* <div className="radio-group">
               <label>
                 <input
                   type="radio" name="paymentInfo" value="Stripe"
@@ -51,7 +51,7 @@ const payment = () => {
                 />
                 Stripe
               </label>
-            </div>
+            </div> */}
             <div className="radio-group">
               <label>
                 <input type="radio" name="paymentInfo" value="Cash"
