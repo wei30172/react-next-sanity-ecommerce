@@ -375,7 +375,6 @@
   margin: 10px auto;
   padding: 5px;
   .placeorder-container, .order-container, .orders-container{
-    color: $text-color;
     display: flex;
     h1{
       font-size: 22px;
@@ -388,6 +387,7 @@
       margin-bottom: 10px;
     }
     .info-group {
+      color: $text-color;
       display: flex;
       flex-direction: column;
       background-color: $gray-color;
@@ -445,6 +445,7 @@
 }
 .orders-wrapper{
   .orders-list{
+    color: $text-color;
     thead{
       background-color: $gray-color;
       th{
@@ -454,6 +455,9 @@
     tbody{
       tr:nth-child(even) {
         background-color: $gray-color;
+      }
+      tr:nth-child(odd) {
+        background-color: rgba($color: $gray-color, $alpha: 0.5);
       }
       td{
         padding: 5px;
