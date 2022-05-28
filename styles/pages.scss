@@ -181,12 +181,11 @@
       z-index: 2;
       .form-input{
         width: 300px;
-        margin: 0 auto;
+        margin: 0 auto 5px;
         span{
           display: none;
           color: $red-color;
           font-size: 12px;
-          margin-bottom: 12px;
         }
         label{
           margin-bottom: 5px;
@@ -330,8 +329,7 @@
         z-index: 2;
         .form-input{
           width: 320px;
-          margin: 0 auto;
-          margin-bottom: 2px;
+          margin: 0 auto 5px;
           position: relative;
           span{
             display: none;

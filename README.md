@@ -1,5 +1,5 @@
 # [react-next-sanity-ecommerce](https://react-next-ecommerce-202205.netlify.app/): Next.js, Sanity, PayPal
-Test email & password : test@testnet.co.us / test1234
+Test email & password : testtest@testnet.co.us / test1234!
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
