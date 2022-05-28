@@ -2,32 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useUserContext } from '../context/UserContext';
-import { useForm } from 'react-hook-form';
 
+import { FormInput } from '../components';
 import { GrInProgress } from 'react-icons/gr';
 
 const Login = () => {
   const router = useRouter();
   const { redirect } = router.query;
-  
   const { userInfo, userLogin, userLoading }  = useUserContext();
+  const [userInputs, setUserInputs] = useState({email: "", password: ""})
   
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  
-  const [userInput, setUserInput] = useState({email: "", password: ""})
-  
+  const formInputs = [
+    {
+      id: 1,
+      label: "Email",
+      errorMessage: "Email should be a valid email address!",
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      pattern: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
+      required: true,
+    },
+    {
+      id: 2,
+      label: "Password",
+      errorMessage:"Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$`,
+      required: true,
+    }
+  ];
+
   useEffect(() => {
     if (userInfo) {
       router.push(redirect || '/');
     }
   }, [userInfo, router, redirect]);
 
-  const onSubmit = () => {
-    userLogin(userInput, redirect);
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    userLogin(userInputs, redirect);
+  };
 
   const handleChange = (e) => {
-    setUserInput({...userInput, [e.target.name]: e.target.value})
+    setUserInputs({...userInputs, [e.target.name]: e.target.value})
   }
 
   return (
@@ -36,38 +56,18 @@ const Login = () => {
       <GrInProgress size={30}/>
     ) : (
     <>
-       <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <div className="form-inner">
           <h2>Login</h2>
-          <div className="form-group">
-            <label htmlFor='email'>Email </label>
-            <span className="error">{
-              errors.email ? errors.email.type === 'pattern'
-                ? 'is not valid'
-                : 'is required'
-                : ''
-            }</span>
-            <input
-              type="email" name='email'
-              {...register('email', { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ })}
-              onChange={handleChange}
-            />
-          </div>
 
-          <div className="form-group">
-            <label htmlFor='password'>Password </label>
-            <span className="error">{
-              errors.password ? errors.password.type === 'minLength'
-                ? 'length is more than 5'
-                : 'is required'
-                : ''
-            }</span>
-            <input
-              type="password" name='password'
-              {...register('password', { required: true, minLength: 6 })}
+          {formInputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={userInputs[input.name]}
               onChange={handleChange}
             />
-          </div>
+          ))}
 
           <input className="btn" type="submit" value="LOGIN" />
 

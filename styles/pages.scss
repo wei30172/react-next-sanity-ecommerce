@@ -179,13 +179,14 @@
       background-color: $gray-color;
       padding: 15px;
       z-index: 2;
-      .form-group{
+      .form-input{
         width: 300px;
         margin: 0 auto;
-        margin-bottom: 15px;
-        .error{
+        span{
+          display: none;
           color: $red-color;
           font-size: 12px;
+          margin-bottom: 12px;
         }
         label{
           margin-bottom: 5px;
@@ -204,6 +205,13 @@
         }
         &:focus-within input {
           border: 1px solid $main-color;
+        }
+        input:invalid[focused="true"]{
+          border: 1px solid red;
+        }
+        input:invalid[focused="true"] ~ span{
+          display: block;
+          margin-bottom: 0;
         }
       }
     }
@@ -320,11 +328,16 @@
         background-color: $gray-color;
         padding: 15px;
         z-index: 2;
-        .form-group{
+        .form-input{
           width: 320px;
           margin: 0 auto;
-          margin-bottom: 5px;
-          .error{
+          margin-bottom: 2px;
+          position: relative;
+          span{
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
             color: $red-color;
             font-size: 12px;
           }
@@ -345,6 +358,13 @@
           }
           &:focus-within input {
             border: 1px solid $main-color;
+          }
+          input:invalid[focused="true"]{
+            border: 1px solid red;
+          }
+          input:invalid[focused="true"] ~ span{
+            display: block;
+            margin-bottom: 0;
           }
         }
         .radio-group{

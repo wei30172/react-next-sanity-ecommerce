@@ -2,32 +2,72 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useUserContext } from '../context/UserContext';
-import { useForm } from 'react-hook-form';
 
+import { FormInput } from '../components';
 import { GrInProgress } from 'react-icons/gr';
 
 const Register = () => {
   const router = useRouter();
   const { redirect } = router.query;
-
   const { userInfo, userRegister, userLoading }  = useUserContext();
+  const [userInputs, setUserInputs] = useState({name: "", email: "", password: "", confirmPassword: ""})
   
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  
-  const [userInput, setUserInput] = useState({name: "", email: "", password: "", confirmPassword: ""})
-  
+  const formInputs = [
+    {
+      id: 1,
+      label: "Username",
+      errorMessage:"Username should be 3-16 characters and shouldn't include any special character!",
+      name: "name",
+      type: "text",
+      placeholder: "Username",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      label: "Email",
+      errorMessage: "Email should be a valid email address!",
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      pattern: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
+      required: true,
+    },
+    {
+      id: 3,
+      label: "Password",
+      errorMessage:"Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$`,
+      required: true,
+    },
+    {
+      id: 4,
+      label: "Confirm Password",
+      errorMessage: "Passwords don't match!",
+      name: "confirmPassword",
+      type: "password",
+      placeholder: "Confirm Password",
+      pattern: userInputs.password,
+      required: true,
+    },
+  ];
+
   useEffect(() => {
     if (userInfo) {
       router.push(redirect || '/');
     }
   }, [userInfo, router, redirect])
 
-  const onSubmit = () => {
-    userRegister(userInput, redirect);
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    userRegister(userInputs, redirect);
+  };
 
   const handleChange = (e) => {
-    setUserInput({...userInput, [e.target.name]: e.target.value})
+    setUserInputs({...userInputs, [e.target.name]: e.target.value})
   }
 
   return (
@@ -36,68 +76,18 @@ const Register = () => {
       <GrInProgress size={30}/>
     ) : (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <div className="form-inner">
           <h2>Register</h2>
-          <div className="form-group">
-            <label htmlFor='name'>Name </label>
-            <span className="error">{
-              errors.name ? errors.name.type === 'minLength'
-                ? 'length is more than 1'
-                : 'is required'
-                : ''
-            }</span>
-            <input
-              type="text" name='name'
-              {...register('name', { required: true, minLength: 2 })}
-              onChange={handleChange}
-            />
-          </div>
 
-          <div className="form-group">
-            <label htmlFor='email'>Email </label>
-            <span className="error">{
-              errors.email ? errors.email.type === 'pattern'
-                ? 'is not valid'
-                : 'is required'
-                : ''
-            }</span>
-            <input
-              type="email" name='email'
-              {...register('email', { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ })}
+          {formInputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={userInputs[input.name]}
               onChange={handleChange}
             />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor='password'>Password </label>
-            <span className="error">{
-              errors.password ? errors.password.type === 'minLength'
-                ? 'length is more than 5'
-                : 'is required'
-                : ''
-            }</span>
-            <input
-              type="password" name='password'
-              {...register('password', { required: true, minLength: 6 })}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor='confirmPassword'>confirmPassword </label>
-            <span className="error">{
-              errors.confirmPassword ? errors.confirmPassword.type === 'minLength'
-                ? 'length is more than 5'
-                : 'is required'
-                : ''
-            }</span>
-            <input
-              type="password" name='confirmPassword'
-              {...register('confirmPassword', { required: true, minLength: 6 })}
-              onChange={handleChange}
-            />
-          </div>
+          ))}
 
           <input className="btn" type="submit" value="REGISTER" />
 

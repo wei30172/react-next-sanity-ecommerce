@@ -2,68 +2,69 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useUserContext } from '../context/UserContext';
-import { useForm } from 'react-hook-form';
+
+import { FormInput } from '../components';
 
 const Profile = () => {
   const router = useRouter();
-
   const { userInfo, userUpdate }  = useUserContext();
-  
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  
-  const [userInput, setUserInput] = useState({
+  const [userInputs, setUserInputs] = useState({
     name: userInfo?.name || "",
     email: userInfo?.email || "",
   })
   
+  const formInputs = [
+    {
+      id: 1,
+      label: "Username",
+      errorMessage:"Username should be 3-16 characters and shouldn't include any special character!",
+      name: "name",
+      type: "text",
+      placeholder: "Username",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      label: "Email",
+      errorMessage: "Email should be a valid email address!",
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      pattern: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
+      required: true,
+    }
+  ];
+
   useEffect(() => {
     if (!userInfo) {
       router.push('/login')
     }
   }, [router, userInfo])
 
-  const onSubmit = () => {
-    userUpdate(userInput)
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    userUpdate(userInputs);
+  };
 
   const handleChange = (e) => {
-    setUserInput({...userInput, [e.target.name]: e.target.value})
+    setUserInputs({...userInputs, [e.target.name]: e.target.value})
   }
 
   return (
     <div className="profile-wrapper">
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit}>
       <div className="form-inner">
         <h2>Profile</h2>
-        <div className="form-group">
-          <label htmlFor='name'>Name </label>
-          <span className="error">{
-            errors.name ? errors.name.type === 'minLength'
-              ? 'length is more than 1'
-              : 'is required'
-              : ''
-          }</span>
-          <input
-            type="text" name='name' value={userInput.name}
-            {...register('name', { required: true, minLength: 2 })}
-            onChange={handleChange}
-          />
-        </div>
 
-        <div className="form-group">
-          <label htmlFor='email'>Email </label>
-          <span className="error">{
-            errors.email ? errors.email.type === 'pattern'
-              ? 'is not valid'
-              : 'is required'
-              : ''
-          }</span>
-          <input
-            type="email" name='email' value={userInput.email}
-            {...register('email', { required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ })}
+        {formInputs.map((input) => (
+          <FormInput
+            key={input.id}
+            {...input}
+            value={userInputs[input.name]}
             onChange={handleChange}
           />
-        </div>
+        ))}
 
         <input className="btn" type="submit" value="UPDATE" />
         <input className="btn back" type="button" value="CANCEL" onClick={() => router.push('/')}/>
