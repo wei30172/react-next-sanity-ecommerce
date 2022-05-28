@@ -53,7 +53,7 @@ const OrderHistory = () => {
             <div className="empty-orders">
               <AiOutlineShoppingCart size={150} />
               <h3>Your order histor is empty</h3>
-              <Link href="/">
+              <Link href="/products">
                 <button type="button" className="btn">
                   {`Let's Shopping!`}
                 </button>

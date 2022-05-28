@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 import { client } from '../utils/client';
 import { HeroBanner, Product } from '../components';
 
@@ -8,7 +9,9 @@ const Home = ({ products, bannerData }) => {
       <HeroBanner heroBanner={bannerData.length && bannerData[0]}/>
       <div className="products-heading">
         <h2>Our Products</h2>
-        <p>Get the Best Deal</p>
+        <Link href={`/products`}>
+          <button className="btn">see more products...</button>
+        </Link>
       </div>
 
       <div className="products-container">
@@ -19,7 +22,7 @@ const Home = ({ products, bannerData }) => {
 }
 
 export const getServerSideProps = async () => {
-  const query = '*[_type == "product"]';
+  const query = '*[_type == "product"][0...3]';
   const products = await client.fetch(query);
 
   const bannerQuery = '*[_type == "banner"]';

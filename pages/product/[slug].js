@@ -110,9 +110,9 @@ export const getStaticPaths = async () => {
 // the data required to render the page is avaliable at buld time ahead of a user's request.
 export const getStaticProps = async ({ params: { slug }}) => {
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-  const productsQuery = '*[_type == "product"]';
-  
   const product = await client.fetch(query);
+  
+  const productsQuery = `*[_type == "product" && category match '${product.category}']`;
   const products = await client.fetch(productsQuery);
 
   return {

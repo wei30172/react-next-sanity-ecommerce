@@ -9,7 +9,7 @@ const EmptyCart = ({showEmpty = false}) => {
     <div className="empty-cart">
       <AiOutlineShopping size={150} />
       {showEmpty && <h3>Your shopping cart is empty</h3>}
-      <Link href="/">
+      <Link href="/products">
         <button
           type="button"
           className="btn"
