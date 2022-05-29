@@ -28,7 +28,7 @@ const Navbar = () => {
           {userInfo &&
             <div className="user-name" onClick={() => setShowCMenu(!showMenu)}>{userInfo.name}</div>
           }
-          {userInfo && showMenu && <Menu />}
+          {userInfo && showMenu && <Menu auth={userInfo?.isAdmin}/>}
         </div>
         <div className="cart-icon-container">
           <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>

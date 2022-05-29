@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import { useStateContext } from '../context/StateContext';
 
-import { AuthWrapper, Navbar, Footer } from '../components';
+import { Navbar, Footer } from '../components';
 
 const Layout = ({ children }) => {
   const [mounted, setMounted] = useState(false);
@@ -23,11 +23,9 @@ const Layout = ({ children }) => {
       <header>
         <Navbar />
       </header>
-      <AuthWrapper>
-        <main className="main-container">
-          {children}
-        </main>
-      </AuthWrapper>
+      <main className="main-container">
+        {children}
+      </main>
       <Footer />
     </div>
   )

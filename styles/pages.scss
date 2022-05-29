@@ -527,27 +527,6 @@
     display: flex;
     flex-direction: column;
     padding: 0px 10px;
-    .products-filter{
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
-      form{
-        display: flex;
-        input{
-          appearance: none;
-          border: none;
-          outline: none;
-          background-color: $gray-color;
-          padding: 5px;
-          border-radius: 8px 0 0 8px;
-        }
-        .btn{
-          margin-top: 0;
-          border-radius: 0 8px 8px 0;
-          width: 35px;
-        }
-      }
-    }
   }
   .sort-container{
     width: 100%;
@@ -557,19 +536,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 5px;
-      .result{
-        text-align: right;
-        position: relative;
-        padding-right: 15px;
-        .clear{
-          position: absolute;
-          top: -10px;
-          right: 0;
-        }
-      }
     }
   }
-  select {
+  select{
     padding: 5px 3px;
     box-sizing: border-box;
     border: none;
@@ -578,12 +547,91 @@
     color: $text-color;
   }
 }
-
 @media (max-width:800px) {
   .search-products-wrapper{
     flex-direction: column;
     .sort-info{
       flex-direction: row-reverse;
+    }
+  }
+}
+// Page: Dashboard
+.users-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 800px;
+  margin: 10px auto;
+  padding: 5px;
+  .users-container{
+    .filter-container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    table{
+      tr{
+        th{
+          width: 250px;
+          text-align: left;
+          font-size: 18px;
+          padding: 10px 0;
+        }
+        td{
+          width: 250px;
+          font-size: 16px;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+@media (max-width:800px) {
+  .users-wrapper{
+    width: 350px;
+    .users-container{
+      table{
+        th, td{
+          &:nth-child(4), &:nth-child(5){
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-products-wrapper, .users-wrapper{
+  .result{
+    text-align: right;
+    position: relative;
+    padding-right: 15px;
+    .clear{
+      position: absolute;
+      top: -10px;
+      right: 0;
+    }
+  }
+  .products-filter, .users-filter{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    form{
+      display: flex;
+      input{
+        appearance: none;
+        border: none;
+        outline: none;
+        background-color: $gray-color;
+        padding: 5px;
+        border-radius: 8px 0 0 8px;
+      }
+      .btn{
+        margin-top: 0;
+        border-radius: 0 8px 8px 0;
+        width: 35px;
+      }
     }
   }
 }
