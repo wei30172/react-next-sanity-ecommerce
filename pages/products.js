@@ -78,14 +78,18 @@ const Products = () => {
 
   const { loading, products } = state;
 
+  const keys = ["name", "category"];
+
+  const search = (data, q) => {
+    return data.filter((item) =>
+      keys.some((key) => item[key].toLowerCase().includes(q))
+    );
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         let productQuery = '*[_type == "product"';
-
-        if (searchQuery !== 'all') {
-          productQuery += ` && name match "${searchQuery}" || category match "${searchQuery}" `;
-        }
 
         if (category !== 'all') {
           productQuery += ` && category match "${category}" `;
@@ -106,7 +110,10 @@ const Products = () => {
 
         productQuery += `] ${order}`;
         setState({ loading: true });
+        
         const products = await client.fetch(productQuery);
+        searchQuery !== 'all' ? products = search(products, searchQuery) : '';
+        
         setState({ products, loading: false });
       } catch (err) {
         toast.error(err.message);
@@ -144,7 +151,6 @@ const Products = () => {
   };
 
   const handleQuerySearch = (e) => {
-    console.log()
     e.preventDefault();
     filterSearch({ searchQuery: queryInfo });
   };
@@ -156,7 +162,7 @@ const Products = () => {
           <form onSubmit={handleQuerySearch}>
             <input
               type="text" name="query" placeholder="Search products"
-              onChange= {(e) => {setQueryInfo(e.target.value)}}
+              onChange= {(e) => {setQueryInfo(e.target.value.toLowerCase())}}
             />
             <button className="btn" type="submit"><GrSearch /></button>
           </form>
