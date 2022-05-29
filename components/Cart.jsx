@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useStateContext } from '../context/StateContext';
@@ -9,11 +9,10 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import { EmptyCart } from '../components';
 
 const Cart = () => {
-  const cartRef = useRef();
   const { itemsPrice, totalQuantities, cartItems, setShowCart, updateCartItemQuanitity, removeFromCart } = useStateContext();
 
   return (
-    <div className="cart-wrapper" ref={cartRef}>
+    <div className="cart-wrapper">
       <div className="cart-container">
         <button
           type='button'
