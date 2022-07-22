@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --config .prettierrc \"{pages,components,utils,context}/**/*.{js,jsx,ts,tsx}\" --write"
   },
   "dependencies": {
     "@paypal/react-paypal-js": "^7.8.0",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "eslint": "8.15.0",
-    "eslint-config-next": "12.1.6"
+    "eslint-config-next": "12.1.6",
+    "prettier": "^2.7.1"
   }
 }
