@@ -3,6 +3,10 @@
 Developed an E-commerce website with React, Next.js, and Sanity. Users can place orders and see order history.
 
 ## Project Screen Shots
+![full-stack-ecommerce2](https://user-images.githubusercontent.com/60259324/180360048-155ce920-7b8a-4754-ab6d-b3c84474518c.png)
+![full-stack-ecommerce5](https://user-images.githubusercontent.com/60259324/180360053-0d01aef9-843e-4b7d-a9d8-04184de7402f.png)
+![full-stack-ecommerce6](https://user-images.githubusercontent.com/60259324/180360058-14a9229d-c9ba-4749-a98a-6f3fc7ddfca3.png)
+![full-stack-ecommerce9](https://user-images.githubusercontent.com/60259324/180360047-4fc091e1-fdd9-4ce8-bb29-e40cb11dee9d.png)
 
 ## Test email & password
 testtest@testnet.co.us / test1234!
