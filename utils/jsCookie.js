@@ -1,5 +1,5 @@
-import jsCookie from 'js-cookie';
-import Cookies from 'js-cookie';
+import jsCookie from "js-cookie";
+import Cookies from "js-cookie";
 
 export const setCookie = (key, value) => {
   try {
@@ -7,15 +7,15 @@ export const setCookie = (key, value) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 export const getCookie = (key, initialValue) => {
   try {
     if (Cookies) {
-      return Cookies.get(key) ?  JSON.parse(Cookies.get(key)) : initialValue;
+      return Cookies.get(key) ? JSON.parse(Cookies.get(key)) : initialValue;
     }
   } catch (err) {
     console.log(err);
     return initialValue;
   }
-}
+};

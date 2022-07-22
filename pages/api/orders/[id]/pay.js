@@ -1,7 +1,7 @@
-import axios from 'axios';
-import nc from 'next-connect';
-import { isAuth } from '../../../../utils/auth';
-import { sanityConfig } from '../../../../utils/config';
+import axios from "axios";
+import nc from "next-connect";
+import { isAuth } from "../../../../utils/auth";
+import { sanityConfig } from "../../../../utils/config";
 
 const handler = nc();
 
@@ -18,9 +18,9 @@ handler.put(async (req, res) => {
             set: {
               isPaid: true,
               paidAt: new Date().toISOString(),
-              'paymentResult.id': req.body.id,
-              'paymentResult.status': req.body.status,
-              'paymentResult.email_address': req.body.payer.email_address,
+              "paymentResult.id": req.body.id,
+              "paymentResult.status": req.body.status,
+              "paymentResult.email_address": req.body.payer.email_address,
             },
           },
         },
@@ -28,13 +28,13 @@ handler.put(async (req, res) => {
     },
     {
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
         Authorization: `Bearer ${tokenWithWriteAccess}`,
       },
-    }
+    },
   );
 
-  res.send({ message: 'Order is paid.' });
+  res.send({ message: "Order is paid." });
 });
 
 export default handler;

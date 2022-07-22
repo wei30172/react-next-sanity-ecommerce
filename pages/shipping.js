@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useUserContext } from '../context/UserContext';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useUserContext } from "../context/UserContext";
 
-import { FormInput } from '../components';
-import { CheckoutWizard } from '../components';
+import { FormInput } from "../components";
+import { CheckoutWizard } from "../components";
 
 const Shipping = () => {
   const router = useRouter();
-  const { userInfo, shippingAddress, saveShippingAddress }  = useUserContext();
+  const { userInfo, shippingAddress, saveShippingAddress } = useUserContext();
   const [shippingInfo, setShippingInfo] = useState(shippingAddress);
 
   const formInputs = [
     {
       id: 1,
       label: "Full Name",
-      errorMessage:"Full Name is required!",
+      errorMessage: "Full Name is required!",
       name: "fullName",
       type: "text",
       placeholder: "Full Name",
@@ -23,7 +23,7 @@ const Shipping = () => {
     {
       id: 2,
       label: "Address",
-      errorMessage:"Address is required!",
+      errorMessage: "Address is required!",
       name: "address",
       type: "text",
       placeholder: "Address",
@@ -32,7 +32,7 @@ const Shipping = () => {
     {
       id: 3,
       label: "City",
-      errorMessage:"City is required!",
+      errorMessage: "City is required!",
       name: "city",
       type: "text",
       placeholder: "City",
@@ -41,7 +41,7 @@ const Shipping = () => {
     {
       id: 4,
       label: "Postal Code",
-      errorMessage:"Postal Code is required!",
+      errorMessage: "Postal Code is required!",
       name: "postalCode",
       type: "text",
       placeholder: "Postal Coded",
@@ -50,32 +50,32 @@ const Shipping = () => {
     {
       id: 5,
       label: "Country",
-      errorMessage:"Country is required!",
+      errorMessage: "Country is required!",
       name: "country",
       type: "text",
       placeholder: "Country",
       required: true,
     },
   ];
-  
+
   useEffect(() => {
     if (!userInfo) {
-      router.push('/login?redirect=/shipping');
+      router.push("/login?redirect=/shipping");
     }
-  }, [router, userInfo])
+  }, [router, userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     saveShippingAddress(shippingInfo);
-  }
+  };
 
   const handleChange = (e) => {
-    setShippingInfo({...shippingInfo, [e.target.name]: e.target.value})
-  }
+    setShippingInfo({ ...shippingInfo, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="shipping-wrapper">
-      <CheckoutWizard activeStep={1}/>
+      <CheckoutWizard activeStep={1} />
       <div className="shipping-container">
         <form onSubmit={handleSubmit}>
           <div className="form-inner">
@@ -95,7 +95,7 @@ const Shipping = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Shipping
+export default Shipping;

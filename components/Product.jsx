@@ -1,10 +1,9 @@
-import React from 'react'
-import Link from 'next/link';
-import Image from 'next/image';
-import { urlFor } from '../utils/client';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "../utils/client";
 
 const Product = ({ product: { image, name, slug, price } }) => {
-
   return (
     <div>
       <Link href={`/product/${slug.current}`}>
@@ -20,7 +19,7 @@ const Product = ({ product: { image, name, slug, price } }) => {
         </div>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

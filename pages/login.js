@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { useUserContext } from '../context/UserContext';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { useUserContext } from "../context/UserContext";
 
-import { FormInput } from '../components';
-import { GrInProgress } from 'react-icons/gr';
+import { FormInput } from "../components";
+import { GrInProgress } from "react-icons/gr";
 
 const Login = () => {
   const router = useRouter();
   const { redirect } = router.query;
-  const { userInfo, userLogin, userLoading }  = useUserContext();
-  const [userInputs, setUserInputs] = useState({email: "", password: ""})
-  
+  const { userInfo, userLogin, userLoading } = useUserContext();
+  const [userInputs, setUserInputs] = useState({ email: "", password: "" });
+
   const formInputs = [
     {
       id: 1,
@@ -20,24 +20,25 @@ const Login = () => {
       name: "email",
       type: "email",
       placeholder: "Email",
-      pattern: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
+      pattern: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$",
       required: true,
     },
     {
       id: 2,
       label: "Password",
-      errorMessage:"Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      errorMessage:
+        "Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character!",
       name: "password",
       type: "password",
       placeholder: "Password",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$`,
       required: true,
-    }
+    },
   ];
 
   useEffect(() => {
     if (userInfo) {
-      router.push(redirect || '/');
+      router.push(redirect || "/");
     }
   }, [userInfo, router, redirect]);
 
@@ -47,38 +48,37 @@ const Login = () => {
   };
 
   const handleChange = (e) => {
-    setUserInputs({...userInputs, [e.target.name]: e.target.value})
-  }
+    setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="login-wrapper">
-    {userLoading ? (
-      <GrInProgress size={30}/>
-    ) : (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div className="form-inner">
-          <h2>Login</h2>
-
-          {formInputs.map((input) => (
-            <FormInput
-              key={input.id}
-              {...input}
-              value={userInputs[input.name]}
-              onChange={handleChange}
-            />
-          ))}
-
-          <input className="btn" type="submit" value="LOGIN" />
-
-          Do not have an account?
-          <Link href={`/register?redirect=${redirect || '/'}`}><span className="link"> Register</span></Link>
-        </div>
-      </form>
-    </>
-    )}
+      {userLoading ? (
+        <GrInProgress size={30} />
+      ) : (
+        <>
+          <form onSubmit={handleSubmit}>
+            <div className="form-inner">
+              <h2>Login</h2>
+              {formInputs.map((input) => (
+                <FormInput
+                  key={input.id}
+                  {...input}
+                  value={userInputs[input.name]}
+                  onChange={handleChange}
+                />
+              ))}
+              <input className="btn" type="submit" value="LOGIN" />
+              Do not have an account?
+              <Link href={`/register?redirect=${redirect || "/"}`}>
+                <span className="link"> Register</span>
+              </Link>
+            </div>
+          </form>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

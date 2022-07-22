@@ -1,6 +1,6 @@
-import nc from 'next-connect';
-import { isAuth } from '../../../utils/auth';
-import { client } from '../../../utils/client';
+import nc from "next-connect";
+import { isAuth } from "../../../utils/auth";
+import { client } from "../../../utils/client";
 
 const handler = nc();
 
@@ -10,7 +10,7 @@ handler.get(async (req, res) => {
     `*[_type == "order" && user._ref == $userId]`,
     {
       userId: req.user._id,
-    }
+    },
   );
   res.send(orders);
 });

@@ -1,9 +1,9 @@
-import React from 'react'
-import Link from 'next/link';
-import { useStateContext } from '../context/StateContext';
-import { AiOutlineShopping } from 'react-icons/ai';
+import React from "react";
+import Link from "next/link";
+import { useStateContext } from "../context/StateContext";
+import { AiOutlineShopping } from "react-icons/ai";
 
-const EmptyCart = ({showEmpty = false}) => {
+const EmptyCart = ({ showEmpty = false }) => {
   const { setShowCart } = useStateContext();
   return (
     <div className="empty-cart">
@@ -19,7 +19,7 @@ const EmptyCart = ({showEmpty = false}) => {
         </button>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default EmptyCart
+export default EmptyCart;

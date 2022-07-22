@@ -1,8 +1,7 @@
-
-import nc from 'next-connect';
-import axios from 'axios';
-import { sanityConfig } from '../../../utils/config';
-import { signToken, isAuth } from '../../../utils/auth';
+import nc from "next-connect";
+import axios from "axios";
+import { sanityConfig } from "../../../utils/config";
+import { signToken, isAuth } from "../../../utils/auth";
 
 const handler = nc();
 
@@ -26,10 +25,10 @@ handler.put(async (req, res) => {
     },
     {
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
         Authorization: `Bearer ${tokenWithWriteAccess}`,
       },
-    }
+    },
   );
 
   const user = {

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import Link from 'next/link';
-import { useStateContext } from '../context/StateContext';
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { useStateContext } from "../context/StateContext";
 
-import { BsBagCheckFill } from 'react-icons/bs';
-import { runFireworks } from '../utils/runFireworks';
+import { BsBagCheckFill } from "react-icons/bs";
+import { runFireworks } from "../utils/runFireworks";
 
 const Success = () => {
   const { clearCart } = useStateContext();
@@ -34,7 +34,7 @@ const Success = () => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Success
+export default Success;

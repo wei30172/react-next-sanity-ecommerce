@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const FormInput = ({ id, label, errorMessage, onChange,  ...inputProps }) => {
+const FormInput = ({ id, label, errorMessage, onChange, ...inputProps }) => {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = (e) => {
@@ -9,7 +9,8 @@ const FormInput = ({ id, label, errorMessage, onChange,  ...inputProps }) => {
 
   return (
     <div className="form-input">
-      <label>{label}{" "}</label><br/>
+      <label>{label} </label>
+      <br />
       <input
         {...inputProps}
         onChange={onChange}
@@ -18,7 +19,7 @@ const FormInput = ({ id, label, errorMessage, onChange,  ...inputProps }) => {
       />
       <span>{errorMessage}</span>
     </div>
-  )
-}
+  );
+};
 
-export default FormInput
+export default FormInput;

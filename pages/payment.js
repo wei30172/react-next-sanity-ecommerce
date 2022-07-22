@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useUserContext } from '../context/UserContext';
-import { toast } from 'react-hot-toast';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useUserContext } from "../context/UserContext";
+import { toast } from "react-hot-toast";
 
-import { CheckoutWizard } from '../components';
+import { CheckoutWizard } from "../components";
 
 const Payment = () => {
   const router = useRouter();
 
-  const { shippingAddress, paymentMethod, savePaymentMethod }  = useUserContext();
+  const { shippingAddress, paymentMethod, savePaymentMethod } =
+    useUserContext();
 
   const [paymentInfo, setPaymentInfo] = useState(paymentMethod);
 
   useEffect(() => {
     if (!shippingAddress.address) {
-      router.push('/shipping');
+      router.push("/shipping");
     }
   }, [shippingAddress, router]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!paymentInfo) {
-      toast.error('Payment method is required');
+      toast.error("Payment method is required");
     } else {
       savePaymentMethod(paymentInfo);
     }
-  }
+  };
 
   return (
     <div className="payment-wrapper">
@@ -37,8 +38,11 @@ const Payment = () => {
             <div className="radio-group">
               <label>
                 <input
-                  type="radio" name="paymentInfo" value="PayPal"
-                  checked={paymentInfo === 'PayPal'} onChange={(e) => setPaymentInfo(e.target.value)}
+                  type="radio"
+                  name="paymentInfo"
+                  value="PayPal"
+                  checked={paymentInfo === "PayPal"}
+                  onChange={(e) => setPaymentInfo(e.target.value)}
                 />
                 PayPal
               </label>
@@ -54,19 +58,28 @@ const Payment = () => {
             </div> */}
             <div className="radio-group">
               <label>
-                <input type="radio" name="paymentInfo" value="Cash"
-                  checked={paymentInfo === 'Cash'} onChange={(e) => setPaymentInfo(e.target.value)}
+                <input
+                  type="radio"
+                  name="paymentInfo"
+                  value="Cash"
+                  checked={paymentInfo === "Cash"}
+                  onChange={(e) => setPaymentInfo(e.target.value)}
                 />
                 Cash
               </label>
             </div>
             <input className="btn" type="submit" value="CONTINUE" />
-            <input className="btn back" type="button" value="EDIT ADDRESS" onClick={() => router.push('/shipping')}/>
+            <input
+              className="btn back"
+              type="button"
+              value="EDIT ADDRESS"
+              onClick={() => router.push("/shipping")}
+            />
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Payment
+export default Payment;

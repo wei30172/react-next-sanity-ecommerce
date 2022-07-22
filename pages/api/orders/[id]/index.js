@@ -1,6 +1,6 @@
-import nc from 'next-connect';
-import { isAuth } from '../../../../utils/auth';
-import { client } from '../../../../utils/client';
+import nc from "next-connect";
+import { isAuth } from "../../../../utils/auth";
+import { client } from "../../../../utils/client";
 
 const handler = nc();
 
