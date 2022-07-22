@@ -118,13 +118,15 @@ const Placeorder = () => {
                     <tr key={item._id}>
                       <td>
                         <Link href={`/product/${item.slug.current}`}>
-                          <Image
-                            src={urlFor(item?.image[0]).url()}
-                            alt={item.name}
-                            width={80}
-                            height={80}
-                            className="placeorder-item-image"
-                          />
+                          <a>
+                            <Image
+                              src={urlFor(item?.image[0]).url()}
+                              alt={item.name}
+                              width={80}
+                              height={80}
+                              className="placeorder-item-image"
+                            />
+                          </a>
                         </Link>
                       </td>
                       <td>{item.name}</td>

@@ -111,7 +111,7 @@ const Products = () => {
         productQuery += `] ${order}`;
         setState({ loading: true });
         
-        const products = await client.fetch(productQuery);
+        let products = await client.fetch(productQuery);
         searchQuery !== 'all' ? products = search(products, searchQuery) : '';
         
         setState({ products, loading: false });

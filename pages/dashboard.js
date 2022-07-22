@@ -37,7 +37,7 @@ const Dashboard = () => {
       try {
         setState({ loading: true });
         
-        const { data } = await axios.get(`/api/users/all`, {
+        let { data } = await axios.get(`/api/users/all`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         searchQuery !== '' ? data = search(data, searchQuery) : '';
