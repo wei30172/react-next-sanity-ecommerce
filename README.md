@@ -1,8 +1,8 @@
 ## Next.js Based Modern Ecommerce Application
 
-Developed an E-commerce website with React, Next.js, and Sanity. Users can place orders and see order history.\
-1.Implemented authentication in Next.js using JWT. Users can place orders and see order history.\
-2.Users can search products by keywords, filter products by prices and categories, and sort products by prices or reviews.
+Developed an E-commerce website with React, Next.js, and Sanity. Users can place orders and see order history.
+1. Implemented authentication in Next.js using JWT. Users can place orders and see order history.
+2. Users can search products by keywords, filter products by prices and categories, and sort products by prices or reviews.
 
 ## Project Screenshots
 ![full-stack-ecommerce2](https://user-images.githubusercontent.com/60259324/180360048-155ce920-7b8a-4754-ab6d-b3c84474518c.png)
